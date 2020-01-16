@@ -14,9 +14,12 @@ let homeVM = function () {
     })
 
     self.processImage = function (uploadedImage) {
+        self.text("");
         let spinnerContainer = document.getElementById("spinnerContainer");
         let welcomeMessage = document.getElementById("welcomeMessage");
-        welcomeMessage.style.display = "none";
+        if (welcomeMessage) {
+            welcomeMessage.style.display = "none";
+        }
         spinnerContainer.style.display = "flex";
         Tesseract.recognize(
             uploadedImage,
