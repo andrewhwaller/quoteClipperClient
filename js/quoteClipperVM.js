@@ -1,23 +1,23 @@
-let homeVM = function() {
+let homeVM = function () {
     self = this;
-    let page = document.getElementsByTagName("body")[0];
 
     self.text = ko.observable("");
     self.userImage = ko.observable();
 
-    self.userImage.subscribe(function(){
+    self.userImage.subscribe(function () {
         self.processImage();
     })
 
-    self.processImage = async function() {
-        await page.classList.add("spinner");
+    self.processImage = async function () {
+        let spinner = document.getElementsByClassName("spinner")[0];
+        spinner.style.display = "inline";
         await Tesseract.recognize(
             'image_2.jpg',
             'eng',
             { logger: m => console.log(m) }
         ).then(({ data: { text } }) => {
             self.text(text)
-            page.classList.remove("spinner");
+            spinner.style.display = "none";
         })
     }
 }

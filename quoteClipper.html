@@ -1,41 +1,51 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>quoteClipper</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/quoteClipper.css">
     <script src="https://kit.fontawesome.com/8b85144329.js" crossorigin="anonymous"></script>
     <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
 </head>
+
 <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark mainNav">
-        <a class="navbar-brand" href="#"><i class="fal fa-scalpel-path mr-2"></i>quoteClipper</a>
+    <nav class="navbar navbar-dark sticky-top bg-dark">
+        <a class="navbar-brand my-auto" href="#"><i class="fal fa-scalpel-path mr-2"></i>quoteClipper</a>
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="#">Sign out<i class="fal fa-sign-out-alt ml-2"></i></a>
             </li>
         </ul>
     </nav>
-    <div class="container-fluid px-0">
-        <div class="mainContent d-flex flex-row m-0">
-            <div class="sidebar bg-light v-scrollable ml-0 col-md-3">
-                <div class="custom-file">
+    <div class="container-fluid qc-container-fluid px-0">
+        <div class="spinner"></div>
+        <div class="mainContent v-scrollable d-flex flex-row m-0">
+            <div class="sidebar bg-light v-scrollable ml-0 col-md-2">
+                <div class="custom-file mt-3">
                     <input type="file" class="custom-file-input" data-bind="value: $root.userImage" id="customFile">
                     <label class="custom-file-label" for="customFile">Choose file</label>
-                  </div>
+                </div>
             </div>
-            <div class="content bg-white v-scrollable col-md-9">
+            <div class="content v-scrollable col-md-10 bg-primary">
                 <!-- ko with: text-->
-                    <textarea class="w-100 h-auto" data-bind="textInput: $data"></textarea>
+                <textarea class="w-100 h-auto" data-bind="textInput: $data"></textarea>
                 <!-- /ko -->
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"
+        crossorigin="anonymous"></script>
     <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
     <script type="module" src="js/quoteClipperVM.js"></script>
 </body>
+
 </html>
