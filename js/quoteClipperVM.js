@@ -16,9 +16,17 @@ let homeVM = function () {
             'eng',
             { logger: m => console.log(m) }
         ).then(({ data: { text } }) => {
+            text = text.replace(/(\r\n|\n|\r)/gm,"");
             self.text(text)
             spinner.style.display = "none";
         })
+    }
+
+    self.grabText = () => {
+        let textarea = document.getElementById("textCanvas");
+        textarea.select();
+        document.execCommand("copy");
+        document.getSelection().removeAllRanges();
     }
 }
 

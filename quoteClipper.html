@@ -22,18 +22,21 @@
         </ul>
     </nav>
     <div class="container-fluid qc-container-fluid px-0">
-        <div class="spinner"></div>
-        <div class="mainContent v-scrollable d-flex flex-row m-0">
-            <div class="sidebar bg-light v-scrollable ml-0 col-md-2">
-                <div class="custom-file mt-3">
-                    <input type="file" class="custom-file-input" data-bind="value: $root.userImage" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
+        <div class="mainContent v-scrollable d-flex flex-row px-0 m-0">
+            <div class="sidebar bg-dark v-scrollable ml-0 px-0 col-md-2 d-flex">
+                <div class="w-100 h-100">
+                    <input type="file" style="display: none;" class="custom-file-input" data-bind="value: $root.userImage" id="customFile">
+                    <label class="btn btn-lg h-100 w-100 btn-dark my-auto d-flex" for="customFile"><span class="my-auto mx-auto"><i class="fal fa-scanner-image"></i> Choose image</span></label>
                 </div>
             </div>
-            <div class="content v-scrollable col-md-10 bg-primary">
+            <div class="content v-scrollable d-flex col-md-8 px-0 bg-primary">
+                <div class="spinner"></div>
                 <!-- ko with: text-->
-                <textarea class="w-100 h-auto" data-bind="textInput: $data"></textarea>
+                <textarea id="textCanvas" class="mx-auto my-auto w-75 h-75 align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
                 <!-- /ko -->
+            </div>
+            <div class="col-md-2 d-flex bg-dark px-0">
+                <button data-bind="click: grabText" class="btn btn-lg h-100 w-100 btn-dark my-auto"><i class="fad fa-copy"></i> Grab text</button>
             </div>
         </div>
     </div>

@@ -14,6 +14,12 @@ body {
     overflow-y: auto;
 }
 
+#textCanvas {
+    background:transparent;
+    border: none;
+    color: white;
+}
+
 .spinner {
     display: none;
     border: 16px solid #f3f3f3; /* Light grey */
@@ -24,7 +30,7 @@ body {
     animation: spin 2s linear infinite;
     z-index: 99999;
     top: 40%;
-    left: 50%;
+    left: 45%;
     shadow: 0 0 1px transparent;
     position: absolute;
   }
