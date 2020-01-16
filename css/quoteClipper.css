@@ -57,6 +57,7 @@ body {
 }
 
 .spinnerBar {
+    display: inherit;
     width: 75%;
     position: absolute;
     top: 0;
