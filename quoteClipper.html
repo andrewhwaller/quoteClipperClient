@@ -19,24 +19,38 @@
             <!-- <li class="nav-item">
                 <a class="nav-link" href="#">Sign out<i class="fal fa-sign-out-alt ml-2"></i></a>
             </li> -->
+            <li class="nav-item">
+                <a class="nav-link" data-bind="click: reset" style="cursor:pointer;"><i class="fal fa-redo"></i></a>
+            </li>
         </ul>
     </nav>
     <div class="container-fluid qc-container-fluid px-0">
         <div class="mainContent v-scrollable d-flex flex-row px-0 m-0">
-            <div class="sidebar v-scrollable ml-0 px-0 col-md-2 d-flex">
+            <div class="sidebar bg-dark v-scrollable ml-0 px-0 col-md-2 d-flex">
                 <div class="w-100 h-100">
                     <input type="file" style="display: none;" class="custom-file-input" data-bind="value: $root.userImage" id="customFile">
-                    <label class="btn btn-lg h-100 w-100 my-auto d-flex" for="customFile"><span class="my-auto mx-auto"><i class="fal fa-scanner-image"></i> Choose image</span></label>
+                    <label class="btn btn-lg btn-light h-100 w-100 my-auto d-flex" style="border-radius: 0px;" for="customFile"><span class="my-auto mx-auto"><i class="fal fa-scanner-image"></i> Choose image</span></label>
                 </div>
             </div>
-            <div class="content v-scrollable d-flex col-md-8 px-0 bg-primary">
-                <div class="spinner"></div>
+            <div class="content v-scrollable d-flex flex-column col-md-8 px-0 bg-primary">
+                <div id="spinnerContainer">
+                    <!-- <div class="spinner"></div> -->
+                    <span class="text-white text-center spinnerText" data-bind="text: tesseractStatus"></span>
+                    <div class="progress spinnerBar">
+                        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" data-bind="style: { width: function(){ return $root.tesseractProgress() + '%'; }() }, attr: {'aria-valuenow': $root.tesseractProgress}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
                 <!-- ko with: text-->
-                <textarea id="textCanvas" class="mx-auto my-auto w-75 h-75 align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
+                    <textarea id="textCanvas" class="mx-auto my-auto w-75 h-75 align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
+                <!-- /ko -->
+                <!-- ko ifnot: text -->
+                    <div class="my-auto mx-auto" id="welcomeMessage">
+                        <h1 class="text-light">Upload an image to get started!</h1>
+                    </div>
                 <!-- /ko -->
             </div>
-            <div class="col-md-2 d-flex bg-dark px-0">
-                <button data-bind="click: grabText" class="btn btn-lg h-100 w-100 btn-info my-auto"><i class="fad fa-copy"></i> Grab text</button>
+            <div class="col-md-2 d-flex bg-info px-0">
+                <button data-bind="click: grabText" class="btn btn-lg h-100 w-100 btn-info my-auto" style="border-radius: 0px;"><i class="fad fa-copy"></i> Grab text</button>
             </div>
         </div>
     </div>

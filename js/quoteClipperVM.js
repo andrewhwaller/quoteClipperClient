@@ -3,23 +3,34 @@ let homeVM = function () {
 
     self.text = ko.observable("");
     self.userImage = ko.observable();
+    self.tesseractStatus = ko.observable("");
+    self.tesseractProgress = ko.observable("");
 
     self.userImage.subscribe(function () {
-        self.processImage();
+        if (self.userImage()) {
+            const selectedFile = document.getElementById('customFile').files[0];
+            self.processImage(selectedFile);
+        }
     })
 
-    self.processImage = async function () {
-        let spinner = document.getElementsByClassName("spinner")[0];
-        spinner.style.display = "inline";
-        await Tesseract.recognize(
-            'image_2.jpg',
+    self.processImage = function (uploadedImage) {
+        let spinnerContainer = document.getElementById("spinnerContainer");
+        let welcomeMessage = document.getElementById("welcomeMessage");
+        welcomeMessage.style.display = "none";
+        spinnerContainer.style.display = "flex";
+        Tesseract.recognize(
+            uploadedImage,
             'eng',
-            { logger: m => console.log(m) }
-        ).then(({ data: { text } }) => {
-            text = text.replace(/(\r\n|\n|\r)/gm,"");
+            { 
+                logger: m => {
+                    self.tesseractStatus(m.status);
+                    self.setProgress(m.progress);
+                } 
+            }
+          ).then(({ data: { text } }) => {
             self.text(text)
-            spinner.style.display = "none";
-        })
+            spinnerContainer.style.display = "none";
+          })
     }
 
     self.grabText = () => {
@@ -27,6 +38,18 @@ let homeVM = function () {
         textarea.select();
         document.execCommand("copy");
         document.getSelection().removeAllRanges();
+    }
+
+    self.setProgress = (progressValue) => {
+        let updatedValue = (progressValue * 100)
+        self.tesseractProgress(updatedValue);
+    }
+
+    self.reset = () => {
+        self.text("");
+        self.userImage("");
+        let welcomeMessage = document.getElementById("welcomeMessage");
+        welcomeMessage.style.display = "block";
     }
 }
 
