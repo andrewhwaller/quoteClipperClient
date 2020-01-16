@@ -1,16 +1,25 @@
 let homeVM = function() {
     self = this;
+    let page = document.getElementsByTagName("body")[0];
 
-    self.text = ko.observable();
+    self.text = ko.observable("");
     self.userImage = ko.observable();
 
-    Tesseract.recognize(
-        'https://tesseract.projectnaptha.com/img/eng_bw.png',
-        'eng',
-        { logger: m => console.log(m) }
-      ).then(({ data: { text } }) => {
-        self.text(text)
-      })
+    self.userImage.subscribe(function(){
+        self.processImage();
+    })
+
+    self.processImage = async function() {
+        await page.classList.add("spinner");
+        await Tesseract.recognize(
+            'image_2.jpg',
+            'eng',
+            { logger: m => console.log(m) }
+        ).then(({ data: { text } }) => {
+            self.text(text)
+            page.classList.remove("spinner");
+        })
+    }
 }
 
 let vm = new homeVM();
