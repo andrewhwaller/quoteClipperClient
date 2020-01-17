@@ -14,7 +14,7 @@ body {
     overflow-y: auto;
 }
 
-#textCanvas {
+#editor {
     background:transparent;
     border: none;
     color: white;

@@ -29,7 +29,7 @@
         <div class="mainContent v-scrollable d-flex flex-row px-0 m-0">
             <div class="sidebar bg-dark v-scrollable ml-0 px-0 col-md-2 d-flex">
                 <div class="w-100 h-100">
-                    <input type="file" style="display: none;" class="custom-file-input" data-bind="value: $root.userImage" id="customFile">
+                    <input type="file" style="display: none;" class="custom-file-input" id="customFile">
                     <label class="btn btn-lg btn-light h-100 w-100 my-auto d-flex" style="border-radius: 0px;" for="customFile"><span class="my-auto mx-auto"><i class="fad fa-scanner-image"></i> Choose image</span></label>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <!-- ko with: text-->
-                    <textarea id="editor" class="mx-auto my-auto w-75 h-75 align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
+                    <textarea id="editor" class="mx-auto my-auto w-75 h-75 bg-primary align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
                 <!-- /ko -->
                 <!-- ko ifnot: text -->
                     <div class="my-auto mx-auto" id="welcomeMessage">
