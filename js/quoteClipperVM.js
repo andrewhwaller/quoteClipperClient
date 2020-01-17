@@ -5,6 +5,7 @@ let homeVM = function () {
     self.userImage = ko.observable();
     self.tesseractStatus = ko.observable("");
     self.tesseractProgress = ko.observable("");
+    self.fileTypeOutput = ko.observable("")
 
     self.userImage.subscribe(function () {
         if (self.userImage()) {
@@ -14,13 +15,8 @@ let homeVM = function () {
     })
 
     self.processImage = function (uploadedImage) {
-        self.text("");
-        let spinnerContainer = document.getElementById("spinnerContainer");
-        let welcomeMessage = document.getElementById("welcomeMessage");
-        if (welcomeMessage) {
-            welcomeMessage.style.display = "none";
-        }
-        spinnerContainer.style.display = "flex";
+        self.handleFileFormat(uploadedImage)
+        self.spinUp();
         Tesseract.recognize(
             uploadedImage,
             'eng',
@@ -34,6 +30,26 @@ let homeVM = function () {
             self.text(text)
             spinnerContainer.style.display = "none";
           })
+    }
+
+    self.handleFileFormat = (uploadedImage) => {
+        let codename = uploadedImage.name;
+        console.log(uploadedImage.type)
+        if (uploadedImage.type === "image/heic") {
+            
+        } else {
+            return
+        }
+    }
+
+    self.spinUp = () => {
+        self.text("");
+        let spinnerContainer = document.getElementById("spinnerContainer");
+        let welcomeMessage = document.getElementById("welcomeMessage");
+        if (welcomeMessage) {
+            welcomeMessage.style.display = "none";
+        }
+        spinnerContainer.style.display = "flex";
     }
 
     self.grabText = () => {
