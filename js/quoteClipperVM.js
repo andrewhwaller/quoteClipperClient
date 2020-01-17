@@ -53,7 +53,7 @@ let homeVM = function () {
     }
 
     self.grabText = () => {
-        let textarea = document.getElementById("textCanvas");
+        let textarea = document.getElementById("editor");
         textarea.select();
         document.execCommand("copy");
         document.getSelection().removeAllRanges();

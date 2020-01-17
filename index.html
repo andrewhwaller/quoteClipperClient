@@ -34,6 +34,7 @@
                 </div>
             </div>
             <div class="content v-scrollable d-flex flex-column col-md-8 px-0 bg-primary">
+                <canvas id="canvas" style="display:none;"></canvas>
                 <div id="spinnerContainer">
                     <!-- <div class="spinner"></div> -->
                     <span class="text-white text-center spinnerText" data-bind="text: tesseractStatus"></span>
@@ -42,7 +43,7 @@
                     </div>
                 </div>
                 <!-- ko with: text-->
-                    <textarea id="textCanvas" class="mx-auto my-auto w-75 h-75 align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
+                    <textarea id="editor" class="mx-auto my-auto w-75 h-75 align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
                 <!-- /ko -->
                 <!-- ko ifnot: text -->
                     <div class="my-auto mx-auto" id="welcomeMessage">
@@ -60,15 +61,11 @@
             </div>
         </div>
     </div>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"
-        crossorigin="anonymous"></script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js" crossorigin="anonymous"></script>
+    <script src="node_modules/heic2any/dist/index.js"></script>
     <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
     <script type="module" src="js/quoteClipperVM.js"></script>
 </body>
