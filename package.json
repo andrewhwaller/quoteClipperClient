@@ -1,0 +1,19 @@
+{
+  "name": "quoteclipperclient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://andrewhwaller@github.com/andrewhwaller/quoteClipperClient.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewhwaller/quoteClipperClient/issues"
+  },
+  "homepage": "https://github.com/andrewhwaller/quoteClipperClient#readme"
+}
