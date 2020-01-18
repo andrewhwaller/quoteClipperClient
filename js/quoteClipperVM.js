@@ -2,6 +2,7 @@ let homeVM = function () {
     self = this;
 
     self.text = ko.observable("");
+    self.confidence = ko.observable("");
     self.userImage = ko.observable();
     self.tesseractStatus = ko.observable("");
     self.tesseractProgress = ko.observable("");
@@ -25,9 +26,12 @@ let homeVM = function () {
                     self.setProgress(m.progress);
                 } 
             }
-          ).then(({ data: { text } }) => {
-            self.text(text)
+          ).then(({ data }) => {
+            self.text(data.text)
+            self.confidence(data.confidence)
+            console.log(data)
             spinnerContainer.style.display = "none";
+            $('[data-toggle="tooltip"]').tooltip();
           })
     }
 
@@ -86,13 +90,15 @@ fileInput.addEventListener('change', function(event) {
                 image.src = event.target.result;
                 res(image);
             }).then((image)=>{
+                console.log(image)
                 var canvas = document.getElementById('canvas');
                 canvas.width = image.width;
                 canvas.height = image.height;
                 var ctx = canvas.getContext('2d');
                 ctx.drawImage(image,0,0);
-                var fullQuality = canvas.toDataURL('image/png');
-                vm.userImage(fullQuality);
+                var convertedImage = canvas.toDataURL('image/jpeg', 1.0);
+                vm.userImage(convertedImage);
+                console.log(vm.userImage())
             })
         }
       }

@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -5,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>quoteClipper</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/quoteClipper.css">
     <script src="https://kit.fontawesome.com/8b85144329.js" crossorigin="anonymous"></script>
     <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
@@ -43,7 +43,20 @@
                     </div>
                 </div>
                 <!-- ko with: text-->
-                    <textarea id="editor" class="mx-auto my-auto w-75 h-75 bg-primary align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
+                    <h1 class="my-4 align-self-center text-white">Editor</h1>
+                    <div class="mx-auto my-4 w-75 align-self-center d-flex flex-row">
+                        <h4 class="text-white">Extracted text:</h4>
+                        <div class="ml-auto d-flex flex-row" style="cursor:pointer" id="confidenceDisplay" data-toggle="tooltip" data-placement="bottom" data-animation="true" data-trigger="hover" title="This is an estimation of the transcription's accuracy.">
+                            <i class="fad fa-bullseye-arrow h3 text-white my-auto"></i>
+                            <div class="d-flex flex-column ml-2">
+                                <h6 class="text-white my-auto">
+                                    <span data-bind="text: $root.confidence"></span><span>% confidence</span>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <h4 class="text-white mx-auto mt-auto w-75 align-self-center d-flex">Extracted text:</h4> -->
+                    <textarea id="editor" class="mx-auto w-75 h-75 bg-primary align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
                 <!-- /ko -->
                 <!-- ko ifnot: text -->
                     <div class="my-auto mx-auto" id="welcomeMessage">
@@ -61,12 +74,19 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js" crossorigin="anonymous"></script>
     <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
     <script type="module" src="js/quoteClipperVM.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        // won't initialize tooltips within KO bindings!
+    </script>
 </body>
 
 </html>
