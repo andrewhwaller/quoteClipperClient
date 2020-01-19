@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700,900&display=swap&subset=latin-ext');
-
 body {
     font-family: 'Titillium Web', sans-serif;
 }
@@ -14,13 +12,13 @@ body {
     overflow-y: auto;
 }
 
-#editor {
+.textEditor {
     background:transparent;
     border: none;
     color: white;
 }
 
-#spinnerContainer {
+.spinnerContainer {
     display: none;
     flex-direction: column;
 }
@@ -43,11 +41,11 @@ body {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    /* width: 120px;
+    height: 120px; */
     animation: spin 2s linear infinite;
     z-index: 99999;
-    shadow: 0 0 1px transparent;
+    /* shadow: 0 0 1px transparent; */
     position: absolute;
     top: 0;
     bottom: 0;
