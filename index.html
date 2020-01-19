@@ -39,7 +39,7 @@
                 <div id="spinnerContainer" class="spinnerContainer">
                     <!-- <div class="spinner"></div> -->
                     <span class="text-white text-center spinnerText" data-bind="text: tesseractStatus"></span>
-                    <div class="progress spinnerBar">
+                    <div class="progress 90 spinnerBar">
                         <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" data-bind="style: { width: function(){ return $root.tesseractProgress() + '%'; }() }, attr: {'aria-valuenow': $root.tesseractProgress}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
@@ -81,7 +81,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js" crossorigin="anonymous"></script>
     <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
-    <script type="module" src="js/quoteClipperVM.js"></script>
+    <script type="module" src="js/quoteClipper.js"></script>
+    <script src="dist/bundle.js"></script>
     <script>
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
