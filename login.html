@@ -12,27 +12,35 @@
 		<script src="https://kit.fontawesome.com/8b85144329.js" crossorigin="anonymous"></script>
   	</head>
 	<body>
-    	<div class="container-fluid bs-container-fluid">
+    	<div class="container-fluid bs-container-fluid bg-gradient">
     		<div class="row h-100">
     	    	<div class="col-sm-8 col-md-6 col-lg-4 mx-auto d-flex flex-column">
-    	     		<div class="card card-signin my-auto d-flex">
+    	     		<div class="card card-signin my-auto d-flex bg-translucent">
     	        		<div class="card-body">
 							<div class="d-flex flex-column">
 								<span class="text-center h2">quoteClipper<i class="fad fa-comment-alt-lines ml-2"></i></span>
 							  	<h6 class="card-title text-center mt-2">Sign In</h6>
 							</div>
     	          			<form class="form-signin">
-    	            			<div class="form-label-group my-3">
-    	              				<input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus />
-    	            			</div>
-    	            			<div class="form-label-group my-3">
-    	            				<input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
-    	            			</div>
+								<div class="input-group my-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="email-addon"><i class="fas fa-at"></i></span>
+									</div>
+									<input type="email" id="inputEmail" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+								</div>
+								<div class="input-group my-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="password-addon"><i class="fas fa-key"></i></span>
+									</div>
+									<input type="password" id="inputPassword" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+								</div>
     	            			<div class="custom-control custom-checkbox mb-3">
     	              				<input type="checkbox" class="custom-control-input" id="customCheck1" />
     	              				<label class="custom-control-label" for="customCheck1">Remember password</label>
-    	            			</div>
-    	            			<button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+								</div>
+								<div class="d-flex flex-row">
+									<button class="btn btn-lg btn-block btn-success" type="submit">Sign in</button>
+								</div>
     	               		</form>
     	        		</div>
     	      		</div>

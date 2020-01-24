@@ -6,6 +6,41 @@ body {
     font-family: 'Titillium Web', sans-serif;
 }
 
+.bg-translucent {
+    background:rgba(255, 255, 255, 0.65);
+}
+
+.bg-gradient {
+    background: linear-gradient(95deg, #113799, #623abe);
+    background-size: 400% 400%;
+
+    -webkit-animation: easyfade 45s ease infinite;
+    -moz-animation: easyfade 45s ease infinite;
+    -o-animation: easyfade 45s ease infinite;
+    animation: easyfade 45s ease infinite;
+}
+
+@-webkit-keyframes easyfade {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes easyfade {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes easyfade {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes easyfade {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
 .bs-container-fluid {
     height: 100vh;
 }
