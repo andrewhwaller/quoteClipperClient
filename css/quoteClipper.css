@@ -1,5 +1,13 @@
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Titillium Web', sans-serif;
+}
+
+.bs-container-fluid {
+    height: 100vh;
 }
 
 .qc-container-fluid {
