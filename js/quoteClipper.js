@@ -101,8 +101,8 @@ fileInput.addEventListener('change', function(event) {
                 console.log(vm.userImage())
             })
         }
-      }
-   });
+    }
+});
 
 let loadDependencies = async () => {
     await bind();
@@ -113,3 +113,19 @@ let bind = () => {
 }
 
 loadDependencies();
+
+let baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
+
+let getQuotes = () => {
+    fetch(baseUrl + "/quotes")
+        .then((resp) => resp.json())
+        .then(function (json) {
+            let quotes = json.data
+            quotes.forEach(element => {
+                console.log(element.attributes.text)
+            });
+            console.log("fetch call complete")
+        })    
+}
+
+getQuotes();
