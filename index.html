@@ -70,9 +70,8 @@
                 <!-- /ko -->
                 <!-- xko with: text-->
                 <h1 class="my-4 align-self-center text-white">Editor</h1>
-                <div class="mx-auto my-4 w-75 align-self-center d-flex flex-row">
-                    <h4 class="text-white">Extracted text:</h4>
-                    <div class="ml-auto my-auto d-flex flex-row" style="cursor:pointer" id="confidenceDisplay"
+                <div class="mx-auto my-3 w-75 align-self-center d-flex flex-row">
+                    <div class="mr-auto my-auto d-flex flex-row" style="cursor:pointer" id="confidenceDisplay"
                         data-toggle="tooltip" data-placement="bottom" data-animation="true" data-trigger="hover"
                         title="This is an estimation of the transcription's accuracy.">
                         <i class="fad fa-bullseye-arrow d-flex my-auto h3 text-light"></i>
@@ -83,7 +82,10 @@
                             </h6>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-light ml-5" data-toggle="modal" data-target="#saveQuoteModal"><i class="fal fa-cloud-upload mr-2"></i>Save quote</button>
+                    <button type="button" class="btn btn-outline-light ml-5" data-toggle="modal" data-target="#saveQuoteModal"><i class="fal fa-cloud-upload mr-2"></i>Save</button>
+                </div>
+                <div class="mx-auto my-3 w-75 align-self-center d-flex flex-row">
+                    <h4 class="text-white">Extracted text:</h4>
                 </div>
                 <textarea id="textEditor" class="mx-auto w-75 h-75 bg-primary align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
                 <div class="modal fade" id="saveQuoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
