@@ -71,47 +71,45 @@ body {
 .spinnerContainer {
     display: none;
     flex-direction: column;
+    width:500px;
+    height:100px;
+    margin:0 auto;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-250px;
+    margin-top:-250px;
 }
 
 .spinnerText {
     width: auto;
     height: 2rem;
     z-index: 99999;
-    position: absolute;
-    top: 15%;
-    bottom: 0;
-    left: 0;
-    right: 0;
     margin: auto;
     font-size: 1.5em;
 }
 
-.spinner {
-    display: inherit;
+/* .spinner { */
+    /* display: inherit;
     border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
+    /* border-top: 16px solid #3498db; Blue */
+    /* border-radius: 50%; */ 
     /* width: 120px;
     height: 120px; */
-    animation: spin 2s linear infinite;
-    z-index: 99999;
+    /* animation: spin 2s linear infinite;
+    z-index: 99999; */
     /* shadow: 0 0 1px transparent; */
-    position: absolute;
+    /* position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
-}
+    margin: auto; */
+/* } */
 
 .spinnerBar {
     display: inherit;
-    width: 25%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 75%;
     margin: auto;
 }
   
