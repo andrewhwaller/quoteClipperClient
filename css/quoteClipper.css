@@ -41,11 +41,7 @@ body {
     100%{background-position:0% 82%}
 }
 
-.bs-container-fluid {
-    height: 100vh;
-}
-
-.qc-container-fluid {
+.qc-height-wrapper {
     height: calc( 100vh - 3.5rem );
     width: 100%;
 }

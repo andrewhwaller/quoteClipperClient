@@ -2,11 +2,13 @@ let homeVM = function () {
     self = this;
 
     self.text = ko.observable("");
+    self.textUploaded = ko.observable(false);
     self.confidence = ko.observable("");
     self.userImage = ko.observable();
     self.tesseractStatus = ko.observable("");
     self.tesseractProgress = ko.observable("");
     self.fileTypeOutput = ko.observable("")
+    self.userQuotes = ko.observableArray([])
 
     self.userImage.subscribe(function () {
         if (self.userImage()) {
@@ -106,10 +108,13 @@ fileInput.addEventListener('change', function(event) {
 
 let loadDependencies = async () => {
     await bind();
+    await console.log("binding is done")
+    getQuotes();
 }
 
 let bind = () => {
     ko.applyBindings(vm, $("body")[0]);
+    console.log("bind happened")
 }
 
 loadDependencies();
@@ -118,14 +123,10 @@ let baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
 
 let getQuotes = () => {
     fetch(baseUrl + "/quotes")
-        .then((resp) => resp.json())
-        .then(function (json) {
-            let quotes = json.data
-            quotes.forEach(element => {
-                console.log(element.attributes.text)
-            });
+        .then((response) => response.json())
+        .then((json) => {
+            vm.userQuotes(json.data)
+            console.log(vm.userQuotes())
             console.log("fetch call complete")
-        })    
+        })
 }
-
-getQuotes();
