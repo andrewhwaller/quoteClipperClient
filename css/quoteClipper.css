@@ -55,6 +55,7 @@ body {
     background:transparent;
     border: none;
     color: white;
+    width: 85%;
 }
 
 #welcomeMessage {
