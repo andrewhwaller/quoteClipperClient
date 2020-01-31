@@ -8,7 +8,7 @@ let homeVM = function () {
     self.tesseractStatus = ko.observable("");
     self.tesseractProgress = ko.observable("");
     self.fileTypeOutput = ko.observable("")
-    self.userQuotes = ko.observableArray([])
+    self.quotes = ko.observableArray([])
 
     self.userImage.subscribe(function () {
         if (self.userImage()) {
@@ -77,6 +77,23 @@ let homeVM = function () {
     }
 }
 
+class Quote {
+    constructor(data) {
+        this.name = data.attributes.name;
+        this.text = data.attributes.text;
+        this.sourceTitle = data.attributes.source_title;
+        this.sourceAuthor = data.attributes.source_author;
+        this.sourcePageNumber = data.attributes.source_page_number;
+        this.sourcePublisher = data.attributes.source_publisher;
+        this.sourcePublicationYear = data.attributes.source_publication_year;
+        this.userId = data.relationships.user.data.id;
+    }
+
+    displayInfo() {
+        console.log(this.name(), this.text(), this.sourceTitle())
+    }
+};
+
 let vm = new homeVM();
 
 let fileInput = document.getElementById('customFile');
@@ -125,8 +142,10 @@ let getQuotes = () => {
     fetch(baseUrl + "/quotes")
         .then((response) => response.json())
         .then((json) => {
-            vm.userQuotes(json.data)
-            console.log(vm.userQuotes())
-            console.log("fetch call complete")
+            json.data.forEach(element => {
+                let loadedQuote = new Quote(element);
+                vm.quotes().push(loadedQuote)
+            });
+            console.log(vm.quotes())
         })
 }

@@ -11,13 +11,13 @@ body {
 }
 
 .bg-gradient {
-    background: linear-gradient(95deg, #113799, #623abe);
+    background: linear-gradient(95deg, #5a78c4, #3abe9d);
     background-size: 400% 400%;
 
-    -webkit-animation: easyfade 45s ease infinite;
-    -moz-animation: easyfade 45s ease infinite;
-    -o-animation: easyfade 45s ease infinite;
-    animation: easyfade 45s ease infinite;
+    -webkit-animation: easyfade 20s ease infinite;
+    -moz-animation: easyfade 20s ease infinite;
+    -o-animation: easyfade 20s ease infinite;
+    animation: easyfade 20s ease infinite;
 }
 
 @-webkit-keyframes easyfade {
@@ -44,6 +44,11 @@ body {
 .qc-height-wrapper {
     height: calc( 100vh - 3.5rem );
     width: 100%;
+}
+
+.login-height-wrapper {
+    height: 100vh;
+    width:100%;
 }
 
 .v-scrollable {
