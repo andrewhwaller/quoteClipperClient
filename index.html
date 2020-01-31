@@ -40,7 +40,6 @@
             <div class="d-flex flex-column col-md-12 bg-primary" style="flex:1;">
                 <canvas id="canvas" style="display:none;"></canvas>
                 <div id="spinnerContainer" class="spinnerContainer">
-                    <!-- <div class="spinner"></div> -->
                     <span class="text-white text-center spinnerText" data-bind="text: tesseractStatus"></span>
                     <div class="progress 90 spinnerBar">
                         <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" data-bind="style: { width: function(){ return $root.tesseractProgress() + '%'; }() }, attr: {'aria-valuenow': $root.tesseractProgress}" aria-valuemin="0" aria-valuemax="100"></div>

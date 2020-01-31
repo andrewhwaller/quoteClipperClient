@@ -95,7 +95,7 @@ body {
 
 .spinnerBar {
     display: inherit;
-    width: 75%;
+    width: 25%;
     position: absolute;
     top: 0;
     bottom: 0;
