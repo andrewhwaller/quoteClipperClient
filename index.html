@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>quoteClipper</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/quoteClipper.css">
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap&subset=latin-ext"
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/8b85144329.js" crossorigin="anonymous"></script>
     <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
 </head>
@@ -31,10 +33,13 @@
             <div class="d-flex flex-row">
                 <div class="w-50">
                     <input type="file" style="display: none;" class="custom-file-input" id="customFile">
-                    <label class="btn btn-lg btn-light h-100 w-100 my-auto d-flex" style="border-radius: 0px;" for="customFile"><span class="my-auto mx-auto"><i class="fad fa-scanner-image"></i> Choose image</span></label>
+                    <label class="btn btn-lg btn-light h-100 w-100 my-auto d-flex" style="border-radius: 0px;"
+                        for="customFile"><span class="my-auto mx-auto"><i class="fad fa-scanner-image"></i> Choose
+                            image</span></label>
                 </div>
                 <div class="w-50">
-                    <button data-bind="click: grabText" class="btn btn-lg h-100 w-100 btn-info my-auto" style="border-radius: 0px;"><i class="fad fa-copy"></i> Grab text</button>
+                    <button data-bind="click: grabText" class="btn btn-lg h-100 w-100 btn-info my-auto"
+                        style="border-radius: 0px;"><i class="fad fa-copy"></i> Grab text</button>
                 </div>
             </div>
             <div class="d-flex flex-column col-md-12 bg-primary" style="flex:1;">
@@ -42,48 +47,114 @@
                 <div id="spinnerContainer" class="spinnerContainer">
                     <span class="text-white text-center spinnerText" data-bind="text: tesseractStatus"></span>
                     <div class="progress 90 spinnerBar">
-                        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" data-bind="style: { width: function(){ return $root.tesseractProgress() + '%'; }() }, attr: {'aria-valuenow': $root.tesseractProgress}" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                            role="progressbar"
+                            data-bind="style: { width: function(){ return $root.tesseractProgress() + '%'; }() }, attr: {'aria-valuenow': $root.tesseractProgress}"
+                            aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
-                <!-- ko with: text-->
-                    <h1 class="my-4 align-self-center text-white">Editor</h1>
-                    <div class="mx-auto my-4 w-75 align-self-center d-flex flex-row">
-                        <h4 class="text-white">Extracted text:</h4>
-                        <div class="ml-auto my-auto d-flex flex-row" style="cursor:pointer" id="confidenceDisplay" data-toggle="tooltip" data-placement="bottom" data-animation="true" data-trigger="hover" title="This is an estimation of the transcription's accuracy.">
-                            <i class="fad fa-bullseye-arrow d-flex my-auto h3 text-white"></i>
-                            <div class="d-flex flex-column my-auto ml-2">
-                                <h6 class="text-white d-flex my-auto">
-                                    <span class="" data-bind="text: $root.confidence"></span><span class="">% confidence</span>
-                                </h6>
+                <!-- ko ifnot: text -->
+                <div id="welcomeMessage" style="display:none;">
+                    <h4 class="text-light text-center">Upload an image to get started!</h4>
+                    <ul class="list-group list-group-flush text-light mx-auto"
+                        style="width:75%;background:transparent;">
+                        <li class="list-group-item" style="background:transparent;"><strong>quoteClipper</strong> will
+                            process your <strong>.bmp</strong>, <strong>.jpg</strong>, <strong>.png</strong>, or
+                            <strong>.pbm</strong> images and automatically extract any text.</li>
+                        <li class="list-group-item" style="background:transparent;">You can then make any corrections or
+                            changes that are needed in the editor.</li>
+                        <li class="list-group-item" style="background:transparent;">Use the "Grab text" feature to copy
+                            your quote directly to your clipboard!</li>
+                    </ul>
+                </div>
+                <!-- /ko -->
+                <!-- xko with: text-->
+                <h1 class="my-4 align-self-center text-white">Editor</h1>
+                <div class="mx-auto my-4 w-75 align-self-center d-flex flex-row">
+                    <h4 class="text-white">Extracted text:</h4>
+                    <div class="ml-auto my-auto d-flex flex-row" style="cursor:pointer" id="confidenceDisplay"
+                        data-toggle="tooltip" data-placement="bottom" data-animation="true" data-trigger="hover"
+                        title="This is an estimation of the transcription's accuracy.">
+                        <i class="fad fa-bullseye-arrow d-flex my-auto h3 text-light"></i>
+                        <div class="d-flex flex-column my-auto ml-2">
+                            <h6 class="text-light d-flex my-auto">
+                                <span class="" data-bind="text: $root.confidence"></span><span class="">%
+                                    confidence</span>
+                            </h6>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-light ml-5" data-toggle="modal" data-target="#saveQuoteModal"><i class="fal fa-cloud-upload mr-2"></i>Save quote</button>
+                </div>
+                <textarea id="textEditor" class="mx-auto w-75 h-75 bg-primary align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
+                <div class="modal fade" id="saveQuoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Save quote</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="quoteName">Quote name</label>
+                                    <small id="nameHelp" class="form-text text-muted">Give your quote a recognizable name that briefly describes its content.</small>
+                                    <input type="text" class="form-control" id="quoteName" aria-describedby="emailHelp" placeholder='e.g., "Yogi Berra on existential location"'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Source title</label>
+                                    <small id="titleHelp" class="form-text text-muted">What is the title of the quote's source?</small>
+                                    <input type="text" class="form-control" id="quoteSourceTitle" aria-describedby="titleHelp" placeholder='e.g., "The Book of Yogi"'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Author</label>
+                                    <small id="authorHelp" class="form-text text-muted">Who is the author of your quote?</small>
+                                    <input type="text" class="form-control" id="quoteSourceAuthor" aria-describedby="authorHelp" placeholder='e.g., "Yogi Berra"'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quoteSourcePageNumber">Page number</label>
+                                    <small id="pageNumberHelp" class="form-text text-muted">What's the page number where your quote is located?</small>
+                                    <input type="text" class="form-control" id="quoteSourcePageNumber" aria-describedby="pageNumberHelp" placeholder='e.g., "97"'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quoteSourcePublisher">Publisher</label>
+                                    <small id="publisherHelp" class="form-text text-muted">Who published your quote's source?</small>
+                                    <input type="text" class="form-control" id="quoteSourcePublisher" aria-describedby="authorHelp" placeholder='e.g., "Baker Baseball Books, Inc."'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quoteSourceYearPublished">Year published</label>
+                                    <small id="yearPublishedHelp" class="form-text text-muted">When was this source published?</small>
+                                    <input type="year" class="form-control" id="quoteSourceYearPublished" aria-describedby="authorHelp" placeholder='e.g., "Baker Baseball Books, Inc."'>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
-                    <!-- <h4 class="text-white mx-auto mt-auto w-75 align-self-center d-flex">Extracted text:</h4> -->
-                    <textarea id="textEditor" class="mx-auto w-75 h-75 bg-primary align-self-center textEditor" wrap="hard" data-bind="textInput: $data"></textarea>
-                <!-- /ko -->
-                <!-- ko ifnot: text -->
-                    <div id="welcomeMessage">
-                        <h4 class="text-light text-center">Upload an image to get started!</h4>
-                        <ul class="list-group list-group-flush text-light mx-auto" style="width:75%;background:transparent;">
-                            <li class="list-group-item" style="background:transparent;"><strong>quoteClipper</strong> will process your <strong>.bmp</strong>, <strong>.jpg</strong>, <strong>.png</strong>, or <strong>.pbm</strong> images and automatically extract any text.</li>
-                            <li class="list-group-item" style="background:transparent;">You can then make any corrections or changes that are needed in the editor.</li>
-                            <li class="list-group-item" style="background:transparent;">Use the "Grab text" feature to copy your quote directly to your clipboard!</li>
-                        </ul>
-                    </div>
-                <!-- /ko -->
+                </div>
+                <!-- x/ko -->
             </div>
         </div>
     </div>
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"
+        crossorigin="anonymous"></script>
     <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
     <script type="module" src="js/quoteClipper.js"></script>
     <script src="dist/bundle.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
         // won't initialize tooltips within KO bindings!

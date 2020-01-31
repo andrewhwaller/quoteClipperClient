@@ -51,7 +51,7 @@ body {
     overflow-y: auto;
 }
 
-.textEditor {
+#textEditor {
     background:transparent;
     border: none;
     color: white;
