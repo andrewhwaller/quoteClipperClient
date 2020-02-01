@@ -21,18 +21,18 @@
 								<span class="text-center h2">quoteClipper<i class="fad fa-comment-alt-lines ml-2"></i></span>
 							  	<h6 class="card-title text-center mt-2">Sign In</h6>
 							</div>
-    	          			<form class="form-signin">
+    	          			<form class="form-signin" id="loginForm">
 								<div class="input-group my-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="email-addon"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" id="inputEmail" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" data-bind="textInput: email, submit: function(){console.log(password)}">
+									<input type="email" id="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
 								</div>
 								<div class="input-group my-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="password-addon"><i class="fas fa-key"></i></span>
 									</div>
-									<input type="password" id="inputPassword" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" data-bind="textInput: password">
+									<input type="password" id="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
 								</div>
     	            			<div class="custom-control custom-checkbox mb-3">
     	              				<input type="checkbox" class="custom-control-input" id="customCheck1" />
@@ -46,6 +46,7 @@
     	      		</div>
     	    	</div>
     		</div>
-    	</div>
+        </div>
+        <script src="js/login.js"></script>
   	</body>
 </html>
