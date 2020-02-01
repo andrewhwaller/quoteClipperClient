@@ -14,7 +14,7 @@
 	<body>
     	<div class="container-fluid login-height-wrapper bg-gradient">
     		<div class="row h-100">
-    	    	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-5 col-xl-4 mx-auto d-flex flex-column">
+    	    	<div class="col-xs-12 col-sm-8 col-md-6 col-lg-5 col-xl-3 mx-auto d-flex flex-column">
     	     		<div class="card card-signin my-auto d-flex bg-translucent">
     	        		<div class="card-body">
 							<div class="d-flex flex-column">
@@ -26,13 +26,13 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="email-addon"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" id="inputEmail" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+									<input type="email" id="inputEmail" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" data-bind="textInput: email, submit: function(){console.log(password)}">
 								</div>
 								<div class="input-group my-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="password-addon"><i class="fas fa-key"></i></span>
 									</div>
-									<input type="password" id="inputPassword" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+									<input type="password" id="inputPassword" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" data-bind="textInput: password">
 								</div>
     	            			<div class="custom-control custom-checkbox mb-3">
     	              				<input type="checkbox" class="custom-control-input" id="customCheck1" />
