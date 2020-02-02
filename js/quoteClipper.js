@@ -39,16 +39,6 @@ let pageVM = function() {
         });
     };
 
-    // self.handleFileFormat = (uploadedImage) => {
-    //     let codename = uploadedImage.name;
-    //     console.log(uploadedImage.type)
-    //     if (uploadedImage.type === "image/heic") {
-
-    //     } else {
-    //         return
-    //     }
-    // }
-
     self.spinUp = function() {
         self.text("");
         let spinnerContainer = document.getElementById("spinnerContainer");
@@ -134,81 +124,6 @@ class QuoteVM {
     }
 }
 
-// class ProjectVM {
-//     constructor(data) {
-//         if (!data) {
-//             data = {
-//                 urn: loki.app.rootUrn + ":data:projects:$"
-//             };
-//         }
-//         this.urn = ko.observable(data.urn);
-//         var isNew = loki.urn.isNew(data.urn);
-//         var codeName = "";
-//         if (!isNew) {
-//             codeName = ko.observable(loki.urn.getLastSegment(data.urn));
-//         }
-//         this.codeName = ko.observable(codeName);
-//         this.codeNameActive = ko.observable(isNew);
-//         this.codeNameBehavior = new lokiUrnCodeNameBehavior({
-//             container: "#projectEditModal",
-//             nameNode: "#nameInput",
-//             codeNameNode: "#codeNameInput",
-//             urnObservable: this.urn,
-//             codeNameObservable: this.codeName
-//         });
-//         this.codeNameActive.subscribe(function(cn) {
-//             behave.inactive = !cn;
-//         });
-//         this.name = data.name;
-//         this.summary = data.summary;
-//     }
-//     codeNameEntry() {
-//         this.codeNameBehavior.inactive = true;
-//     }
-//     toJSON() {
-//         return {
-//             urn: this.urn(),
-//             name: this.name
-//         };
-//     }
-//     save() {
-//         var data = this.toJSON();
-//         return new Promise((resolve, reject) => {
-//             loki.data.saveEntity(data.urn, "urn:com:saplingdata:projects:model:types:project", data)
-//             .done(function(data) {
-//                 resolve(data);
-//             })
-//             .fail(function(err) {
-//                 reject(err);
-//             });
-//         });
-//     }
-//     delete() {
-//         var urn = this.urn();
-//         return new Promise((resolve, reject) => {
-//             loki.data.deleteEntity(urn)
-//             .done(function(data) {
-//                 resolve(data);
-//             })
-//             .fail(function(err) {
-//                 reject(err);
-//             });
-//         });
-//     }
-//     static loadProject(urn) {
-//         return new Promise((resolve, reject) => {
-//             loki.data.loadEntity(urn, "urn:com:saplingdata:projects:model:types:project")
-//             .done(function(data) {
-//                 var p = new ProjectVM(data);
-//                 resolve(p);
-//             })
-//             .fail(function(err) {
-//                 reject(err);
-//             });
-//         });
-//     }
-// }
-
 let vm = new pageVM();
 
 let fileInput = document.getElementById("customFile");
@@ -262,7 +177,7 @@ let getQuotes = function() {
 let checkToken = function () {
     let token = Cookies.get('auth_token')
     if (!token) {
-        window.location = "/login.html"
+        window.location = "/index.html"
     }
 }
 

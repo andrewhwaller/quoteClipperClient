@@ -13,11 +13,11 @@ loginForm.addEventListener('submit', function (e) {
     }).then((json) => {
         Cookies.set('auth_token', json.auth_token, { expires: 2 });
         if (status === 200) {
-            window.location = "/index.html"
+            window.location = "/quoteClipper.html"
         }
     }).catch(function (error) {
         console.log(error);
-        alert("Error! Please try again.");
+        alert("Invalid credentials! Please try again.");
     });
 });
 
@@ -27,7 +27,7 @@ function init() {
     const spinner = document.getElementById("spinner")
     
     if (Cookies.get('auth_token')) {
-        window.location = "/index.html"
+        window.location = "/quoteClipper.html"
     } else {
         spinner.style.display = "none"
         loginPanel.style.display = "flex"
