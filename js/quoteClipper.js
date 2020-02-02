@@ -77,6 +77,26 @@ let pageVM = function() {
         let welcomeMessage = document.getElementById("welcomeMessage");
         welcomeMessage.style.display = "block";
     };
+
+    self.createQuote = function() {
+        let quoteData = {
+            name: self.quoteName(),
+            text: self.text(),
+            source_title: self.quoteSourceTitle(),
+            source_author: self.quoteSourceAuthor(),
+            source_page_number: self.quoteSourcePageNumber(),
+            source_publisher: self.quoteSourcePublisher(),
+            source_publication_year: self.sourcePublicationYear()
+        }
+    }
+
+    self.text = ko.observable("");
+    self.quoteName = ko.observable("");
+    self.quoteSourceTitle = ko.observable("");
+    self.quoteSourceAuthor = ko.observable("");
+    self.quoteSourcePageNumber = ko.observable("");
+    self.quoteSourcePublisher = ko.observable("");
+    self.quoteSourceYearPublished = ko.observable("");
 };
 
 class QuoteVM {
@@ -102,7 +122,7 @@ class QuoteVM {
     }
 
     toJson() {
-        let object = {
+        return {
             name: this.name,
             text: this.text,
             source_title: this.sourceTitle,
@@ -111,12 +131,6 @@ class QuoteVM {
             source_publisher: this.sourcePublisher,
             source_publication_year: this.sourcePublicationYear
         }
-        console.log(object)
-        return object;
-    }
-
-    save() {
-
     }
 }
 
@@ -227,7 +241,6 @@ fileInput.addEventListener("change", function(event) {
 let loadDependencies = async function() {
     await bind();
     getQuotes();
-    newQuoteFromVM();
 };
 
 let bind = function() {
@@ -254,8 +267,3 @@ let getQuotes = function() {
         });
         console.log(vm.quotes())
 };
-
-let newQuoteFromVM = function() {
-    let newQuote = new QuoteVM();
-    console.log(newQuote)
-}
