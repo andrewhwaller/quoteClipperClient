@@ -239,7 +239,11 @@ loadDependencies();
 let baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
 
 let getQuotes = function() {
-    fetch(baseUrl + "/quotes")
+    fetch(baseUrl + "/quotes", {
+        headers: {
+            'Authorization': Cookies.get('auth_token')
+        }
+    })
         .then(response => response.json())
         .then(json => {
             json.data.forEach(element => {

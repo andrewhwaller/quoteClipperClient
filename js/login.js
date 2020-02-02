@@ -1,6 +1,8 @@
-Cookies.set("cookie", "true");
-
 const loginForm = document.getElementById('loginForm')
+
+if (Cookies.get('auth_token')) {
+    window.location = "/index.html"
+}
 
 loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -16,6 +18,7 @@ loginForm.addEventListener('submit', function (e) {
         return response.json()
     }).then((json) => {
         console.log(json.auth_token)
+        Cookies.set('auth_token', json.auth_token, { expires: 2 });
         // Cookies.set(auth_token, { expires: 7 })
     }).catch(function (error) {
         console.log(error);
