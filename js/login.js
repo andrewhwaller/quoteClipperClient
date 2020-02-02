@@ -1,3 +1,5 @@
+Cookies.set("cookie", "true");
+
 const loginForm = document.getElementById('loginForm')
 
 loginForm.addEventListener('submit', function (e) {
