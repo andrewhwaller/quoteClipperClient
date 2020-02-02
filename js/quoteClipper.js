@@ -238,17 +238,6 @@ fileInput.addEventListener("change", function(event) {
     }
 });
 
-let loadDependencies = async function() {
-    await bind();
-    getQuotes();
-};
-
-let bind = function() {
-    ko.applyBindings(vm, $("body")[0]);
-};
-
-loadDependencies();
-
 let baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
 
 let getQuotes = function() {
@@ -259,11 +248,32 @@ let getQuotes = function() {
     })
         .then(response => response.json())
         .then(json => {
-            json.data.forEach(element => {
-                console.log(element)
-                let loadedQuote = new QuoteVM(element);
-                vm.quotes().push(loadedQuote);
-            });
+            if (json.data) {
+                json.data.forEach(element => {
+                    console.log(element);
+                    let loadedQuote = new QuoteVM(element);
+                    vm.quotes().push(loadedQuote);
+                });
+            }
         });
         console.log(vm.quotes())
 };
+
+let checkToken = function () {
+    let token = Cookies.get('auth_token')
+    if (!token) {
+        window.location = "/login.html"
+    }
+}
+
+let loadDependencies = async function () {
+    await checkToken();
+    await bind();
+    getQuotes();
+};
+
+let bind = function() {
+    ko.applyBindings(vm, $("body")[0]);
+};
+
+loadDependencies();
