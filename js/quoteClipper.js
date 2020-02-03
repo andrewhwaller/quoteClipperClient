@@ -182,7 +182,7 @@ let checkToken = function () {
 }
 
 let loadDependencies = async function () {
-    await checkToken();
+    checkToken();
     await bind();
     getQuotes();
 };
