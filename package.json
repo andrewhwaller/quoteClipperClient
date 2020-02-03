@@ -2,9 +2,9 @@
   "name": "quoteclipperclient",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "quoteClipper.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
