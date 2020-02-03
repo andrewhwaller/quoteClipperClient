@@ -1,3 +1,7 @@
+const loginForm = document.getElementById('loginForm')
+const loginPanel = document.getElementById("loginPanel")
+const spinner = document.getElementById("spinner")
+
 loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
     let status;
@@ -21,11 +25,7 @@ loginForm.addEventListener('submit', function (e) {
     });
 });
 
-function init() {
-    const loginForm = document.getElementById('loginForm')
-    const loginPanel = document.getElementById("loginPanel")
-    const spinner = document.getElementById("spinner")
-    
+function init() {    
     if (Cookies.get('auth_token')) {
         window.location = "/quoteClipper.html"
     } else {
