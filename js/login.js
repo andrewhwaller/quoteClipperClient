@@ -27,7 +27,7 @@ loginForm.addEventListener('submit', function (e) {
 
 function init() {    
     if (Cookies.get('auth_token')) {
-        window.location = "/quoteClipper.html"
+        window.location = "/index.html"
     } else {
         spinner.style.display = "none"
         loginPanel.style.display = "flex"

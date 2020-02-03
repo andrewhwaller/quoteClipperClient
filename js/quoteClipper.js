@@ -177,7 +177,7 @@ let getQuotes = function() {
 let checkToken = function () {
     let token = Cookies.get('auth_token')
     if (!token) {
-        window.location = "/index.html"
+        window.location = "/login.html"
     }
 }
 
