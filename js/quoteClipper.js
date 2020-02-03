@@ -182,7 +182,6 @@ let checkToken = function () {
 }
 
 let loadDependencies = async function () {
-    checkToken();
     await bind();
     getQuotes();
 };
@@ -191,4 +190,10 @@ let bind = function() {
     ko.applyBindings(vm, $("body")[0]);
 };
 
-loadDependencies();
+
+let init = function () {
+    checkToken();
+    loadDependencies();
+}
+
+init();

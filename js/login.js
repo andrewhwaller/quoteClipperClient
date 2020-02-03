@@ -17,7 +17,7 @@ loginForm.addEventListener('submit', function (e) {
     }).then((json) => {
         Cookies.set('auth_token', json.auth_token, { expires: 2 });
         if (status === 200) {
-            window.location = "/quoteClipper.html"
+            window.location = "/index.html"
         }
     }).catch(function (error) {
         console.log(error);
