@@ -20,8 +20,7 @@ loginForm.addEventListener('submit', function (e) {
             window.location = "/index.html"
         }
     }).catch(function (error) {
-        console.log(error);
-        alert("Invalid credentials! Please try again.");
+        alert(error);
     });
 });
 
