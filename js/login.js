@@ -16,7 +16,7 @@ loginForm.addEventListener('submit', function (e) {
         return response.json()
     }).then((json) => {
         Cookies.set('auth_token', json.auth_token, { expires: 2 });
-        if (status === 200) {
+        if (status === 200 && Cookies.get('auth_token')) {
             window.location = "/index.html"
         }
     }).catch(function (error) {
