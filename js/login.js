@@ -1,5 +1,6 @@
-const loginForm = document.getElementById('loginForm')
+const loginForm = document.getElementById("loginForm")
 const loginPanel = document.getElementById("loginPanel")
+const createAccountForm = document.getElementById("createAccountForm")
 const spinner = document.getElementById("spinner")
 
 loginForm.addEventListener('submit', function (e) {
@@ -33,7 +34,34 @@ loginForm.addEventListener('submit', function (e) {
     }
 });
 
-
+createAccountForm.addEventListener('submit', function (e) {
+    if (createAccountForm.checkValidity()) {
+        e.preventDefault();
+        let status;
+        let headers = new Headers();
+        headers.set('Content-type', 'application/json');
+        // fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
+        fetch("http://localhost:3000/api/v1/users", {
+            method: 'POST',
+            body: JSON.stringify({ user: { email: createAccountForm.email.value, password: createAccountForm.newPassword.value, password_confirmation: createAccountForm.confirmPassword.value } }),
+            headers: headers
+        })
+            .then(handleErrors)
+            .then((response) => {
+                status = response.status;
+                return response.json();
+            }).then((json) => {
+                Cookies.set('auth_token', json.auth_token, { expires: 2 });
+                if (status === 201) {
+                    $('#errorMessage').append("User created successfully! Yay!");
+                    $('#alert').addClass('show');
+                }
+            }).catch(function (error) {
+                $('#errorMessage').append(error);
+                $('#alert').addClass('show');
+            });
+    }
+});
 
 (function () {
     window.addEventListener('load', function() {
