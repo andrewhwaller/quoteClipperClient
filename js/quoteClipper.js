@@ -122,6 +122,25 @@ class QuoteVM {
             source_publication_year: this.sourcePublicationYear
         }
     }
+
+    save() {
+        let quote = this.toJson();
+
+        fetch(baseUrl + "/quotes", {
+            method: 'post',
+            headers: {
+                'Authorization': Cookies.get('auth_token')
+            },
+            body: quote
+        })
+        .then(response => {
+            console.log(response.status)
+        })
+    }
+
+    update() {
+
+    }
 }
 
 let vm = new pageVM();
@@ -153,14 +172,15 @@ fileInput.addEventListener("change", function(event) {
     }
 });
 
-let baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
+// var baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
+var baseUrl = "http://localhost:3000/api/v1"
 
 let getQuotes = function() {
     fetch(baseUrl + "/quotes", {
         headers: {
             'Authorization': Cookies.get('auth_token')
         }
-    })
+    }).then(handleErrors)
         .then(response => response.json())
         .then(json => {
             if (json.data) {
@@ -170,9 +190,21 @@ let getQuotes = function() {
                     vm.quotes().push(loadedQuote);
                 });
             }
+        })
+        .catch(function (error) {
+            alert(error)
+            Cookies.remove('auth_token')
+            window.location = "/login.html"
         });
         console.log(vm.quotes())
 };
+
+let handleErrors = function (response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
 
 let checkToken = function () {
     let token = Cookies.get('auth_token')
