@@ -16,7 +16,7 @@
             <div class="modal fade" id="createAccountModal" tabindex="-1" role="dialog" aria-labelledby="createAccountModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <form class="form-signin" id="loginForm">
+                        <form class="needs-validation" id="createAccountForm" novalidate>
                             <div class="modal-header">
                                 <h5 class="modal-title" id="createAccountModalLabel">Create new account</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -26,7 +26,10 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="newEmail">Email</label>
-                                    <input type="text" class="form-control" id="newEmail" placeholder="example@mail.com" required>
+                                    <input type="email" class="form-control" id="newEmail" placeholder="example@mail.com" required>
+                                    <div class="invalid-feedback">  
+                                        Please enter an email address.  
+                                    </div> 
                                 </div>
                                 <div class="form-group">
                                     <label for="newPassword">Password</label>
@@ -35,10 +38,14 @@
                                 <div class="form-group">
                                     <label for="confirmPassword">Confirm password</label>
                                     <input type="password" class="form-control" id="confirmPassword" required>
+                                    <div class="invalid-feedback">  
+                                        Passwords must match.  
+                                    </div> 
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success">Create account</button>
+                                <!-- <button type="submit" class="btn btn-success">Create account</button> -->
+                                <input type="submit" value="Create account" class="btn btn-success">
                             </div>
                         </form>
                     </div>
@@ -62,25 +69,31 @@
 								<span class="text-center h2">quoteClipper<i class="fad fa-comment-alt-lines ml-2"></i></span>
 							  	<h6 class="card-title text-center mt-2">Sign In</h6>
 							</div>
-    	          			<form class="form-signin" id="loginForm">
+    	          			<form class="form-signin needs-validation" id="loginForm" novalidate>
 								<div class="input-group my-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="email-addon"><i class="fas fa-at"></i></span>
 									</div>
-									<input type="email" id="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                                    <input type="email" id="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
+                                    <div class="invalid-feedback">  
+                                        Please enter a valid email.  
+                                    </div> 
 								</div>
 								<div class="input-group my-3">
 									<div class="input-group-prepend">
-										<span class="input-group-text" id="password-addon"><i class="fas fa-key"></i></span>
+                                        <span class="input-group-text" id="password-addon"><i class="fas fa-key"></i></span>
 									</div>
-									<input type="password" id="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                                    <input type="password" id="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" required>
+                                    <div class="invalid-feedback">  
+                                        Please enter your password.  
+                                    </div>
 								</div>
 								<div class="d-flex flex-row">
-									<button class="btn btn-lg btn-block btn-success" type="submit">Sign in</button>
+									<input class="btn btn-block btn-success" type="submit" value="Sign in">
 								</div>
                             </form>  
                         </div>
-                        <button type="button" class="btn btn-link mb-3 text-dark" data-toggle="modal" data-target="#createAccountModal">
+                        <button type="button" class="btn btn-link mb-2 text-dark" data-toggle="modal" data-target="#createAccountModal">
                             Create new account
                         </button> 
     	      		</div>
