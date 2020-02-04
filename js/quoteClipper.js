@@ -69,22 +69,12 @@ let pageVM = function() {
     };
 
     self.createQuote = function() {
-        let quoteData = {
-            name: self.quoteName(),
-            text: self.text(),
-            source_title: self.quoteSourceTitle(),
-            source_author: self.quoteSourceAuthor(),
-            source_page_number: self.quoteSourcePageNumber(),
-            source_publisher: self.quoteSourcePublisher(),
-            source_publication_year: self.quoteSourceYearPublished()
-        }
-
         let headers = new Headers();
         headers.set('Content-type', 'application/json');
         headers.set('Authorization', Cookies.get('auth_token'));
         // fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
         fetch("http://localhost:3000/api/v1/quotes", {
-            method: 'POST',
+            method: 'post',
             body: JSON.stringify(
                 {
                     quote: {
@@ -246,6 +236,11 @@ let checkToken = function () {
         window.location = "/login.html"
     }
 }
+
+document.getElementById("signOut").addEventListener('click', function () {
+    Cookies.remove('auth_token')
+    window.location = "/login.html"
+})
 
 let loadDependencies = async function () {
     await bind();
