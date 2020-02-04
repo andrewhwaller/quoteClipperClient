@@ -224,7 +224,10 @@ let getQuotes = function() {
 };
 
 let handleErrors = function (response) {
-    if (!response.ok) {
+    if (response.status === 403) {
+        Cookies.remove('auth_token')
+        window.location = "/login.html"
+    } else if (!response.ok) {
         throw Error(response.statusText);
     }
     return response;
