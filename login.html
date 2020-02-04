@@ -24,6 +24,15 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <div class="alert alert-warning alert-dismissible d-flex fade" style="z-index: 9999;position:fixed;width:auto;height:auto;" id="modalErrorAlert" role="alert">
+                                    <div class="d-flex flex-row">
+                                        <strong class="mr-1">Hold up! Something's not right.</strong>
+                                        <div id="modalErrorMessage"></div>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                                 <div class="form-group">
                                     <label for="newEmail">Email</label>
                                     <input type="email" class="form-control" id="newEmail" placeholder="example@mail.com" required>
@@ -33,11 +42,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="newPassword">Password</label>
-                                    <input type="password" class="form-control" id="newPassword" required>
+                                    <input type="password" class="form-control password-input" id="newPassword" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="confirmPassword">Confirm password</label>
-                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                    <input type="password" class="form-control password-input" id="confirmPassword" required>
                                     <div class="invalid-feedback">  
                                         Passwords must match.  
                                     </div> 
@@ -51,12 +60,21 @@
                 </div>
             </div>
             <div class="spinner" id="spinner"></div>
-            <div class="alert alert-danger alert-dismissible fade fixed-top" id="alert" role="alert">
+            <div class="alert alert-danger alert-dismissible fade fixed-top" id="errorAlert" role="alert">
                 <div class="d-flex flex-row">
-                    <strong class="mr-1">Hey! Listen!</strong>
+                    <strong class="mr-1">Whoops!</strong>
                     <div id="errorMessage"></div>
                 </div>
-                <button type="button" class="close my-auto" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="alert alert-success alert-dismissible fade fixed-top" id="successAlert" role="alert">
+                <div class="d-flex flex-row">
+                    <strong class="mr-1">Hey! Listen!</strong>
+                    <div id="successMessage"></div>
+                </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -76,7 +94,7 @@
                                     <input type="email" id="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
                                     <div class="invalid-feedback">  
                                         Please enter a valid email.  
-                                    </div> 
+                                    </div>
 								</div>
 								<div class="input-group my-3">
 									<div class="input-group-prepend">

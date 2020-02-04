@@ -76,8 +76,46 @@ let pageVM = function() {
             source_author: self.quoteSourceAuthor(),
             source_page_number: self.quoteSourcePageNumber(),
             source_publisher: self.quoteSourcePublisher(),
-            source_publication_year: self.sourcePublicationYear()
+            source_publication_year: self.quoteSourceYearPublished()
         }
+
+        let headers = new Headers();
+        headers.set('Content-type', 'application/json');
+        headers.set('Authorization', Cookies.get('auth_token'));
+        // fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
+        fetch("http://localhost:3000/api/v1/quotes", {
+            method: 'POST',
+            body: JSON.stringify(
+                {
+                    quote: {
+                                name: self.quoteName(),
+                                text: self.text(),
+                                source_title: self.quoteSourceTitle(),
+                                source_author: self.quoteSourceAuthor(),
+                                source_page_number: self.quoteSourcePageNumber(),
+                                source_publisher: self.quoteSourcePublisher(),
+                                source_publication_year: self.quoteSourceYearPublished()
+                            }
+                }
+            ),
+            headers: headers
+        })
+            .then(handleErrors)
+            .then((response) => {
+                status = response.status;
+                return response.json();
+            }).then((json) => {
+                console.log(json)
+                // if (status === 201) {
+                //     $('#createAccountModal').modal('hide')
+                //     $('#successMessage').append("User created successfully! Login to proceed.");
+                //     $('#successAlert').addClass('show');
+                // }
+            }).catch(function (error) {
+                // $('#modalErrorMessage').append(error);
+                // $('#modalErrorAlert').addClass('show');
+                alert(error);
+            });
     }
 
     self.text = ko.observable("");
@@ -123,24 +161,20 @@ class QuoteVM {
         }
     }
 
-    save() {
-        let quote = this.toJson();
+    // save() {
+    //     let quote = this.toJson();
 
-        fetch(baseUrl + "/quotes", {
-            method: 'post',
-            headers: {
-                'Authorization': Cookies.get('auth_token')
-            },
-            body: quote
-        })
-        .then(response => {
-            console.log(response.status)
-        })
-    }
-
-    update() {
-
-    }
+    //     fetch(baseUrl + "/quotes", {
+    //         method: 'post',
+    //         headers: {
+    //             'Authorization': Cookies.get('auth_token')
+    //         },
+    //         body: quote
+    //     })
+    //     .then(response => {
+    //         console.log(response.status)
+    //     })
+    // }
 }
 
 let vm = new pageVM();
@@ -215,7 +249,7 @@ let checkToken = function () {
 
 let loadDependencies = async function () {
     await bind();
-    getQuotes();
+    // getQuotes();
 };
 
 let bind = function() {

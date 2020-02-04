@@ -10,7 +10,7 @@ loginForm.addEventListener('submit', function (e) {
         let headers = new Headers();
         headers.set('Content-type', 'application/json');
         // fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
-        fetch("http://localhost:3000/api/v1/login", {
+        fetch("http://localhost:3000/api/v1/users/login", {
             method: 'POST',
             body: JSON.stringify({ email: loginForm.email.value, password: loginForm.password.value }),
             headers: headers
@@ -29,7 +29,7 @@ loginForm.addEventListener('submit', function (e) {
                 }
             }).catch(function (error) {
                 $('#errorMessage').append(error);
-                $('#alert').addClass('show');
+                $('#errorAlert').addClass('show');
             });
     }
 });
@@ -43,7 +43,7 @@ createAccountForm.addEventListener('submit', function (e) {
         // fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
         fetch("http://localhost:3000/api/v1/users", {
             method: 'POST',
-            body: JSON.stringify({ user: { email: createAccountForm.email.value, password: createAccountForm.newPassword.value, password_confirmation: createAccountForm.confirmPassword.value } }),
+            body: JSON.stringify({ user: { email: createAccountForm.newEmail.value, password: createAccountForm.newPassword.value, password_confirmation: createAccountForm.confirmPassword.value } }),
             headers: headers
         })
             .then(handleErrors)
@@ -51,14 +51,14 @@ createAccountForm.addEventListener('submit', function (e) {
                 status = response.status;
                 return response.json();
             }).then((json) => {
-                Cookies.set('auth_token', json.auth_token, { expires: 2 });
                 if (status === 201) {
-                    $('#errorMessage').append("User created successfully! Yay!");
-                    $('#alert').addClass('show');
+                    $('#createAccountModal').modal('hide')
+                    $('#successMessage').append("User created successfully! Login to proceed.");
+                    $('#successAlert').addClass('show');
                 }
             }).catch(function (error) {
-                $('#errorMessage').append(error);
-                $('#alert').addClass('show');
+                $('#modalErrorMessage').append(error);
+                $('#modalErrorAlert').addClass('show');
             });
     }
 });
@@ -70,15 +70,19 @@ createAccountForm.addEventListener('submit', function (e) {
         var forms = document.getElementsByClassName('needs-validation');
 
         var validation = Array.prototype.filter.call(forms, function (form) {
+
+            document.querySelectorAll('.password-input').forEach(input => {
+                    input.addEventListener('keyup', event => {
+                        if (passwordInput.value != confirmationInput.value) {
+                            passwordInput.setCustomValidity('Passwords must match.');
+                            confirmationInput.setCustomValidity('Passwords must match.');
+                        } else {
+                            passwordInput.setCustomValidity('');
+                            confirmationInput.setCustomValidity('');
+                        }
+                    })
+            })
             form.addEventListener('submit', function (event) {
-                if (passwordInput.value != confirmationInput.value) {
-                    passwordInput.setCustomValidity('Passwords must match.')
-                    confirmationInput.setCustomValidity('Passwords must match.')
-                } else {
-                    passwordInput.setCustomValidity('');
-                    confirmationInput.setCustomValidity('');
-                }
-                
                 if (form.checkValidity() === false) {
                     event.preventDefault();
                     event.stopPropagation();
