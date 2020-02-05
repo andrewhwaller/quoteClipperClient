@@ -15,6 +15,7 @@ let pageVM = function() {
     self.tesseractProgress = ko.observable("");
     self.fileTypeOutput = ko.observable("");
     self.quotes = ko.observableArray([]);
+    self.selectedQuote = ko.observable();
 
     self.userImage.subscribe(() => {
         if (self.userImage()) {
@@ -102,8 +103,8 @@ let pageVM = function() {
                 //     $('#successAlert').addClass('show');
                 // }
             }).catch(function (error) {
-                // $('#modalErrorMessage').append(error);
-                // $('#modalErrorAlert').addClass('show');
+                $('#modalErrorMessage').append(error);
+                $('#modalErrorAlert').addClass('show');
                 alert(error);
             });
     }
@@ -136,8 +137,35 @@ class QuoteVM {
         }
     }
 
-    displayInfo() {
-        console.log(this.name, this.text, this.sourceTitle);
+    display() {
+        vm.selectedQuote(this)
+        $("#editQuoteModal").modal("show")
+    }
+
+    save() {
+        let updatedQuote = this.toJson();
+        let headers = new Headers();
+        headers.set('Content-type', 'application/json');
+        headers.set('Authorization', Cookies.get('auth_token'));
+        // fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
+        fetch("http://localhost:3000/api/v1/quotes/" + this.id, {
+            method: 'put',
+            body: JSON.stringify(updatedQuote),
+            headers: headers
+        })
+            .then(handleErrors)
+            .then((response) => {
+                status = response.status;
+                return response.json();
+            }).then((json) => {
+                $('#editModalSuccessMessage').append("Quote updated successfully!");
+                $('#editModalSuccessAlert').addClass('show');
+                getQuotes();
+            }).catch(function (error) {
+                $('#editModalErrorMessage').append(error);
+                $('#editModalErrorAlert').addClass('show');
+                alert(error);
+            });
     }
 
     toJson() {
@@ -210,8 +238,8 @@ let getQuotes = function() {
         })
         .catch(function (error) {
             alert(error)
-            Cookies.remove('auth_token')
-            window.location = "/login.html"
+            // Cookies.remove('auth_token')
+            // window.location = "/login.html"
         });
 };
 
