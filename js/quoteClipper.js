@@ -128,6 +128,7 @@ class QuoteVM {
             this.sourcePageNumber = data.attributes.source_page_number;
             this.sourcePublisher = data.attributes.source_publisher;
             this.sourcePublicationYear = data.attributes.source_publication_year;
+            this.createDate = dayjs(data.attributes.created_at).format('dddd, DD/MM/YYYY h:mm A');
         } else if (!data) {
             this.name = vm.quoteName()
             this.text = vm.text()
@@ -150,24 +151,14 @@ class QuoteVM {
             source_publication_year: this.sourcePublicationYear
         }
     }
-
-    // save() {
-    //     let quote = this.toJson();
-
-    //     fetch(baseUrl + "/quotes", {
-    //         method: 'post',
-    //         headers: {
-    //             'Authorization': Cookies.get('auth_token')
-    //         },
-    //         body: quote
-    //     })
-    //     .then(response => {
-    //         console.log(response.status)
-    //     })
-    // }
 }
 
-let vm = new pageVM();
+var vm = new pageVM();
+
+document.getElementById("signOut").addEventListener('click', function () {
+    Cookies.remove('auth_token')
+    window.location = "/login.html"
+})
 
 let fileInput = document.getElementById("customFile");
 
@@ -206,21 +197,22 @@ let getQuotes = function() {
         }
     }).then(handleErrors)
         .then(response => response.json())
-        .then(json => {
+        .then(async function(json) {
             if (json.data) {
-                json.data.forEach(element => {
-                    console.log(element);
+                var queriedQuotes = await []
+                await json.data.forEach(element => {
                     let loadedQuote = new QuoteVM(element);
-                    vm.quotes().push(loadedQuote);
+                    queriedQuotes.push(loadedQuote);
                 });
+                vm.quotes(queriedQuotes)
             }
+
         })
         .catch(function (error) {
             alert(error)
             Cookies.remove('auth_token')
             window.location = "/login.html"
         });
-        console.log(vm.quotes())
 };
 
 let handleErrors = function (response) {
@@ -240,14 +232,9 @@ let checkToken = function () {
     }
 }
 
-document.getElementById("signOut").addEventListener('click', function () {
-    Cookies.remove('auth_token')
-    window.location = "/login.html"
-})
-
 let loadDependencies = async function () {
     await bind();
-    // getQuotes();
+    getQuotes();
 };
 
 let bind = function() {
@@ -255,9 +242,9 @@ let bind = function() {
 };
 
 
-let init = function () {
-    checkToken();
-    loadDependencies();
+let init = async function () {
+    await checkToken();
+    await loadDependencies();
 }
 
 init();
