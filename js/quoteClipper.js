@@ -160,12 +160,16 @@ class QuoteVM {
             }).then((json) => {
                 $('#editModalSuccessMessage').append("Quote updated successfully!");
                 $('#editModalSuccessAlert').addClass('show');
+                $('#editQuoteModal').modal('hide');
                 getQuotes();
             }).catch(function (error) {
                 $('#editModalErrorMessage').append(error);
                 $('#editModalErrorAlert').addClass('show');
-                alert(error);
+                $('#editQuoteModal').modal('hide');
             });
+            setTimeout(function() {
+                $(".alert").alert('close');
+            }, 3000);
     }
 
     toJson() {

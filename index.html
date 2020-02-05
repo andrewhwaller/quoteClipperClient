@@ -119,6 +119,7 @@
                     <h4 class="text-white">Extracted text:</h4>
                     <textarea id="textEditor" class="mx-auto w-100 h-75 bg-primary align-self-center" wrap="hard" data-bind="textInput: $data"></textarea>
                 </div>
+                <!-- /ko -->
                 <div class="modal fade" id="saveQuoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -167,8 +168,19 @@
                         </div>
                     </div>
                 </div>
-                <!-- /ko -->
                 <!-- ko with: selectedQuote -->
+                <div class="alert alert-danger fade fixed-top" id="editModalErrorAlert" role="alert">
+                    <div class="d-flex flex-row">
+                        <strong class="mr-1">Whoops!</strong>
+                        <div id="editModalErrorMessage"></div>
+                    </div>
+                </div>
+                <div class="alert alert-success fade fixed-top" id="editModalSuccessAlert" role="alert">
+                    <div class="d-flex flex-row">
+                        <strong class="mr-1">Hey! Listen!</strong>
+                        <div id="editModalSuccessMessage"></div>
+                    </div>
+                </div>
                 <div class="modal fade" id="editQuoteModal" tabindex="-1" role="dialog" aria-labelledby="editQuoteModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -177,24 +189,6 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                <div class="alert alert-danger alert-dismissible fade fixed-top" id="editModalErrorAlert" role="alert">
-                                    <div class="d-flex flex-row">
-                                        <strong class="mr-1">Whoops!</strong>
-                                        <div id="editModalErrorMessage"></div>
-                                    </div>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="alert alert-success alert-dismissible fade fixed-top" id="editModalSuccessAlert" role="alert">
-                                    <div class="d-flex flex-row">
-                                        <strong class="mr-1">Hey! Listen!</strong>
-                                        <div id="editModalSuccessMessage"></div>
-                                    </div>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
