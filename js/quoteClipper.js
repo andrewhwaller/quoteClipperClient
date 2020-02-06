@@ -210,18 +210,13 @@ class QuoteVM {
                 status = response.status;
                 return response.json();
             }).then((json) => {
-                $('#editModalSuccessMessage').append("Quote deleted!");
-                $('#editModalSuccessAlert').addClass('show');
+                displaySuccess("Quote deleted!");
                 $('#editQuoteModal').modal('hide');
                 getQuotes();
             }).catch(function (error) {
-                $('#editModalErrorMessage').append(error);
-                $('#editModalErrorAlert').addClass('show');
+                displayError(error)
                 $('#editQuoteModal').modal('hide');
             });
-            setTimeout(function() {
-                $(".alert").alert('close');
-            }, 3000);
     }
 
     toJson() {
@@ -307,6 +302,24 @@ let handleErrors = function (response) {
         throw Error(response.statusText);
     }
     return response;
+}
+
+let displayError = function (message) {
+    $('#errorMessage').append(message);
+    $('#errorAlert').addClass('show');
+    
+    setTimeout(function() {
+        $(".alert").alert('close');
+    }, 3000);  
+}
+
+let displaySuccess = function (message) {
+    $('#successMessage').append(message);
+    $('#successAlert').addClass('show');
+
+    setTimeout(function() {
+        $(".alert").alert('close');
+    }, 3000);
 }
 
 let checkToken = function () {

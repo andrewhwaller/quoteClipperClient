@@ -28,8 +28,7 @@ loginForm.addEventListener('submit', function (e) {
                     window.location = "/login.html";
                 }
             }).catch(function (error) {
-                $('#errorMessage').append(error);
-                $('#errorAlert').addClass('show');
+                displayError(error)
             });
     }
 });
@@ -53,8 +52,7 @@ createAccountForm.addEventListener('submit', function (e) {
             }).then((json) => {
                 if (status === 201) {
                     $('#createAccountModal').modal('hide')
-                    $('#successMessage').append("User created successfully! Login to proceed.");
-                    $('#successAlert').addClass('show');
+                    displaySuccess("User created successfully! Login to proceed.")
                 }
             }).catch(function (error) {
                 $('#modalErrorMessage').append(error);
@@ -98,6 +96,24 @@ let handleErrors = function (response) {
         throw Error(response.statusText);
     }
     return response;
+}
+
+let displayError = function (message) {
+    $('#errorMessage').append(message);
+    $('#errorAlert').addClass('show');
+    
+    setTimeout(function() {
+        $(".alert").alert('close');
+    }, 3000);  
+}
+
+let displaySuccess = function (message) {
+    $('#successMessage').append(message);
+    $('#successAlert').addClass('show');
+
+    setTimeout(function() {
+        $(".alert").alert('close');
+    }, 3000);
 }
 
 
