@@ -47,7 +47,6 @@ let pageVM = function() {
     });
 
     self.processImage = function(uploadedImage) {
-        // self.handleFileFormat(uploadedImage)
         self.spinUp();
         Tesseract.recognize(uploadedImage, "eng", {
             logger: m => {
@@ -183,6 +182,35 @@ class QuoteVM {
                 return response.json();
             }).then((json) => {
                 $('#editModalSuccessMessage').append("Quote updated successfully!");
+                $('#editModalSuccessAlert').addClass('show');
+                $('#editQuoteModal').modal('hide');
+                getQuotes();
+            }).catch(function (error) {
+                $('#editModalErrorMessage').append(error);
+                $('#editModalErrorAlert').addClass('show');
+                $('#editQuoteModal').modal('hide');
+            });
+            setTimeout(function() {
+                $(".alert").alert('close');
+            }, 3000);
+    }
+
+    delete() {
+        let headers = new Headers();
+        headers.set('Content-type', 'application/json');
+        headers.set('Authorization', Cookies.get('auth_token'));
+
+        fetch("http://localhost:3000/api/v1/quotes/" + this.id, {
+            method: 'delete',
+            body: JSON.stringify(this),
+            headers: headers
+        })
+            .then(handleErrors)
+            .then((response) => {
+                status = response.status;
+                return response.json();
+            }).then((json) => {
+                $('#editModalSuccessMessage').append("Quote deleted!");
                 $('#editModalSuccessAlert').addClass('show');
                 $('#editQuoteModal').modal('hide');
                 getQuotes();

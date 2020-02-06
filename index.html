@@ -173,19 +173,19 @@
                         </div>
                     </div>
                 </div>
-                <!-- ko with: selectedQuote -->
-                <div class="alert alert-danger fade fixed-top" id="editModalErrorAlert" role="alert">
+                <div class="alert alert-danger fade d-flex mx-auto" id="editModalErrorAlert" style="z-index: 9999;position:relative;width:auto;height:auto;" role="alert">
                     <div class="d-flex flex-row">
                         <i class=" h3 fad fa-exclamation-square mr-3 my-auto"></i>
                         <div id="editModalErrorMessage" class="my-auto"></div>
                     </div>
                 </div>
-                <div class="alert alert-success fade fixed-top" id="editModalSuccessAlert" role="alert">
+                <div class="alert alert-success fade d-flex mx-auto" id="editModalSuccessAlert" style="z-index:9999;position:relative;width:auto;height:auto;" role="alert">
                     <div class="d-flex flex-row">
                         <i class="h3 fad fa-thumbs-up mr-3 my-auto"></i>
                         <div id="editModalSuccessMessage" class="my-auto"></div>
                     </div>
                 </div>
+                <!-- ko with: selectedQuote -->
                 <div class="modal fade" id="editQuoteModal" tabindex="-1" role="dialog" aria-labelledby="editQuoteModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
