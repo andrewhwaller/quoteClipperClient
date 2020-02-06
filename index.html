@@ -28,9 +28,14 @@
                         Quotes
                     </a>
                     <div class="dropdown-menu quotesDropdown bg-dark dropdown-menu-right" style="width: 85vw; max-height: 50vh; overflow-y:auto;" aria-labelledby="navbarDropdown">
-                        <em class="dropdown-header text-white">Grab a quote...</em>
+                        <!-- <em class="dropdown-header text-white">Grab a quote...</em> -->
+                        <form data-bind="submit: function() { return false; }">
+                            <div class="form-group">
+                                <input type="text" class="form-control bg-dark border-0 text-light" placeholder="Search for a quote using name, text, title, or author..." data-bind="value: quotesDropdown.searchValue, valueUpdate: 'afterkeydown'">
+                            </div>
+                        </form>
                         <!-- ko foreach: quotes -->
-                            <a class="dropdown-item text-white" data-bind="click: display">
+                            <a class="dropdown-item text-white" data-bind="click: display, visible: isFiltered()">
                                 <strong data-bind="text: name"></strong>
                                 <br>
                                 <div class="ml-3" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
@@ -171,14 +176,14 @@
                 <!-- ko with: selectedQuote -->
                 <div class="alert alert-danger fade fixed-top" id="editModalErrorAlert" role="alert">
                     <div class="d-flex flex-row">
-                        <strong class="mr-1">Whoops!</strong>
-                        <div id="editModalErrorMessage"></div>
+                        <i class=" h3 fad fa-exclamation-square mr-3 my-auto"></i>
+                        <div id="editModalErrorMessage" class="my-auto"></div>
                     </div>
                 </div>
                 <div class="alert alert-success fade fixed-top" id="editModalSuccessAlert" role="alert">
                     <div class="d-flex flex-row">
-                        <strong class="mr-1">Hey! Listen!</strong>
-                        <div id="editModalSuccessMessage"></div>
+                        <i class="h3 fad fa-thumbs-up mr-3 my-auto"></i>
+                        <div id="editModalSuccessMessage" class="my-auto"></div>
                     </div>
                 </div>
                 <div class="modal fade" id="editQuoteModal" tabindex="-1" role="dialog" aria-labelledby="editQuoteModalLabel" aria-hidden="true">

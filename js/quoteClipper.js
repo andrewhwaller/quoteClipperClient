@@ -16,6 +16,29 @@ let pageVM = function() {
     self.fileTypeOutput = ko.observable("");
     self.quotes = ko.observableArray([]);
     self.selectedQuote = ko.observable();
+    self.quotesDropdown = {
+        searchValue: ko.observable()
+    }
+
+    self.quotesDropdown.searchValue.subscribe(function(param) {
+        self.filterQuotes(param);
+    });
+
+    self.filterQuotes = function(param) {
+        param = param.toLowerCase();
+        self.quotes().forEach(function(quote) {
+            if (
+                quote.name.toLowerCase().indexOf(param) > -1
+                || quote.text.toLowerCase().indexOf(param) > -1
+                || quote.sourceAuthor.toLowerCase().indexOf(param) > -1
+                || quote.sourceTitle.toLowerCase().indexOf(param) > -1)
+            {
+                quote.isFiltered(true);
+            } else {
+                quote.isFiltered(false);
+            }
+        });
+    }
 
     self.userImage.subscribe(() => {
         if (self.userImage()) {
@@ -130,6 +153,7 @@ class QuoteVM {
             this.sourcePublisher = data.attributes.source_publisher;
             this.sourcePublicationYear = data.attributes.source_publication_year;
             this.createDate = dayjs(data.attributes.created_at).format('dddd, DD/MM/YYYY h:mm A');
+            this.isFiltered = ko.observable(true)
         } else if (!data) {
             this.name = vm.quoteName()
             this.text = vm.text()
