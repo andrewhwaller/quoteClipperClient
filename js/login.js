@@ -99,7 +99,9 @@ let handleErrors = function (response) {
 }
 
 let displayError = function (message) {
+    $('.modal').modal('hide');
     $('#errorMessage').append(message);
+    $('#errorAlert').removeClass('d-none');
     $('#errorAlert').addClass('show');
     
     setTimeout(function() {
@@ -108,7 +110,9 @@ let displayError = function (message) {
 }
 
 let displaySuccess = function (message) {
+    $('.modal').modal('hide');
     $('#successMessage').append(message);
+    $('#successAlert').removeClass('d-none');
     $('#successAlert').addClass('show');
 
     setTimeout(function() {

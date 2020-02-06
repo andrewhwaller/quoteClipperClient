@@ -35,25 +35,29 @@
                             </div>
                         </form>
                         <!-- ko foreach: quotes -->
-                            <a class="dropdown-item text-white" data-bind="click: display, visible: isFiltered()">
-                                <strong data-bind="text: name"></strong>
-                                <br>
-                                <div class="ml-3" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
-                                    <!-- ko if: sourceAuthor -->
-                                    <span class="text-light ml-2">Author: <small data-bind="text: sourceAuthor"></small></span>
-                                    <!-- /ko -->
-                                    <!-- ko if: sourceAuthor -->
-                                    <span class="text-light ml-2">Title: <small data-bind="text: sourceTitle"></small></span>
-                                    <!-- /ko -->
-                                    <!-- ko if: sourcePublicationYear -->
-                                    <span class="text-light ml-2">Year: <small data-bind="text: sourcePublicationYear"></small></span>
-                                    <!-- /ko -->
-                                    <!-- ko if: createDate -->
-                                    <span class="text-light ml-2">Originally clipped: <small data-bind="text: createDate"></small></span>
-                                    <!-- /ko -->
-                                    <!-- ko if: text -->
-                                    <span class="text-light ml-2">Quote text: <small data-bind="text: text"></small></span>
-                                    <!-- /ko -->
+                            <a class="dropdown-item text-white" data-bind="visible: isFiltered()">
+                                <div class="d-flex flex-row w-auto">
+                                    <div data-bind="click: display" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
+                                        <strong data-bind="text: name"></strong>
+                                        <div class="ml-3" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
+                                            <!-- ko if: sourceAuthor -->
+                                            <span class="text-light ml-2">Author: <small data-bind="text: sourceAuthor"></small></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: sourceAuthor -->
+                                            <span class="text-light ml-2">Title: <small data-bind="text: sourceTitle"></small></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: sourcePublicationYear -->
+                                            <span class="text-light ml-2">Year: <small data-bind="text: sourcePublicationYear"></small></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: createDate -->
+                                            <span class="text-light ml-2">Originally clipped: <small data-bind="text: createDate"></small></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: text -->
+                                            <span class="text-light ml-2">Quote text: <small data-bind="text: text"></small></span>
+                                            <!-- /ko -->
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-link text-white" id="deleteQuoteButton" data-bind="click: function(){this.delete()}"><i class="fad fa-trash-alt"></i></button>
                                 </div>
                             </a>
                         <!-- /ko -->
@@ -88,6 +92,18 @@
                             role="progressbar"
                             data-bind="style: { width: function(){ return $root.tesseractProgress() + '%'; }() }, attr: {'aria-valuenow': $root.tesseractProgress}"
                             aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="alert alert-danger d-none fade mt-3 mx-auto" id="errorAlert" role="alert">
+                    <div class="d-flex flex-row">
+                        <i class=" h3 fad fa-exclamation-square mr-3 my-auto mt-3"></i>
+                        <div id="errorMessage" class="my-auto"></div>
+                    </div>
+                </div>
+                <div class="alert alert-success d-none fade mt-3 mx-auto" id="successAlert" role="alert">
+                    <div class="d-flex flex-row">
+                        <i class="h3 fad fa-thumbs-up mr-3 my-auto"></i>
+                        <div id="successMessage" class="my-auto"></div>
                     </div>
                 </div>
                 <!-- ko ifnot: text -->
@@ -173,16 +189,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="alert alert-danger fade d-flex mx-auto" id="errorAlert" style="z-index: 9999;position:relative;width:auto;height:auto;" role="alert">
-                    <div class="d-flex flex-row">
-                        <i class=" h3 fad fa-exclamation-square mr-3 my-auto"></i>
-                        <div id="editModalErrorMessage" class="my-auto"></div>
-                    </div>
-                </div>
-                <div class="alert alert-success fade d-flex mx-auto" id="successAlert" style="z-index:9999;position:relative;width:auto;height:auto;" role="alert">
-                    <div class="d-flex flex-row">
-                        <i class="h3 fad fa-thumbs-up mr-3 my-auto"></i>
-                        <div id="editModalSuccessMessage" class="my-auto"></div>
+                <div class="modal fade" id="deleteQuoteModal" tabindex="-1" role="dialog" aria-labelledby="deleteQuoteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteQuoteModalLabel">Delete quote</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <span>Are you sure you want to delete this quote?</span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="deleteQuoteConfirmButton" class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- ko with: selectedQuote -->

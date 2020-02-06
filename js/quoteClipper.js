@@ -115,19 +115,11 @@ let pageVM = function() {
         })
             .then(handleErrors)
             .then((response) => {
-                status = response.status;
-                return response.json();
-            }).then((json) => {
-                console.log(json)
-                // if (status === 201) {
-                //     $('#createAccountModal').modal('hide')
-                //     $('#successMessage').append("User created successfully! Login to proceed.");
-                //     $('#successAlert').addClass('show');
-                // }
+                if (response.status == 201) {
+                    displaySuccess("You clipped a new quote!")
+                }
             }).catch(function (error) {
-                $('#modalErrorMessage').append(error);
-                $('#modalErrorAlert').addClass('show');
-                alert(error);
+                displayError(error)
             });
     }
 
@@ -181,18 +173,11 @@ class QuoteVM {
                 status = response.status;
                 return response.json();
             }).then((json) => {
-                $('#editModalSuccessMessage').append("Quote updated successfully!");
-                $('#editModalSuccessAlert').addClass('show');
-                $('#editQuoteModal').modal('hide');
+                displaySuccess("Quote updated successfully!")
                 getQuotes();
             }).catch(function (error) {
-                $('#editModalErrorMessage').append(error);
-                $('#editModalErrorAlert').addClass('show');
-                $('#editQuoteModal').modal('hide');
+                displayError(error)
             });
-            setTimeout(function() {
-                $(".alert").alert('close');
-            }, 3000);
     }
 
     delete() {
@@ -207,15 +192,12 @@ class QuoteVM {
         })
             .then(handleErrors)
             .then((response) => {
-                status = response.status;
-                return response.json();
-            }).then((json) => {
-                displaySuccess("Quote deleted!");
-                $('#editQuoteModal').modal('hide');
-                getQuotes();
+                if (response.status == 204) {
+                    displaySuccess("Quote deleted!");
+                    getQuotes();
+                }
             }).catch(function (error) {
                 displayError(error)
-                $('#editQuoteModal').modal('hide');
             });
     }
 
@@ -239,7 +221,7 @@ document.getElementById("signOut").addEventListener('click', function () {
     window.location = "/login.html"
 })
 
-let fileInput = document.getElementById("customFile");
+var fileInput = document.getElementById("customFile");
 
 fileInput.addEventListener("change", function(event) {
     if (event.target.files) {
@@ -288,7 +270,7 @@ let getQuotes = function() {
 
         })
         .catch(function (error) {
-            alert(error)
+            displayError(error)
             // Cookies.remove('auth_token')
             // window.location = "/login.html"
         });
@@ -305,7 +287,9 @@ let handleErrors = function (response) {
 }
 
 let displayError = function (message) {
+    $('.modal').modal('hide');
     $('#errorMessage').append(message);
+    $('#errorAlert').removeClass('d-none');
     $('#errorAlert').addClass('show');
     
     setTimeout(function() {
@@ -314,7 +298,9 @@ let displayError = function (message) {
 }
 
 let displaySuccess = function (message) {
+    $('.modal').modal('hide');
     $('#successMessage').append(message);
+    $('#successAlert').removeClass('d-none');
     $('#successAlert').addClass('show');
 
     setTimeout(function() {
