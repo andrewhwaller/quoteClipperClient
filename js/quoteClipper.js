@@ -95,8 +95,7 @@ let pageVM = function() {
         let headers = new Headers();
         headers.set('Content-type', 'application/json');
         headers.set('Authorization', Cookies.get('auth_token'));
-        // fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
-        fetch("http://localhost:3000/api/v1/quotes", {
+        fetch(baseUrl + "/quotes", {
             method: 'post',
             body: JSON.stringify(
                 {
@@ -162,8 +161,7 @@ class QuoteVM {
         let headers = new Headers();
         headers.set('Content-type', 'application/json');
         headers.set('Authorization', Cookies.get('auth_token'));
-        // fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
-        fetch("http://localhost:3000/api/v1/quotes/" + this.id, {
+        fetch(baseUrl + "/quotes/" + this.id, {
             method: 'put',
             body: JSON.stringify(updatedQuote),
             headers: headers
@@ -185,7 +183,7 @@ class QuoteVM {
         headers.set('Content-type', 'application/json');
         headers.set('Authorization', Cookies.get('auth_token'));
 
-        fetch("http://localhost:3000/api/v1/quotes/" + this.id, {
+        fetch(baseUrl + "/quotes/" + this.id, {
             method: 'delete',
             body: JSON.stringify(this),
             headers: headers
@@ -248,8 +246,8 @@ fileInput.addEventListener("change", function(event) {
     }
 });
 
-// var baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
-var baseUrl = "http://localhost:3000/api/v1"
+var baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
+// var baseUrl = "http://localhost:3000/api/v1"
 
 let getQuotes = function() {
     fetch(baseUrl + "/quotes", {
