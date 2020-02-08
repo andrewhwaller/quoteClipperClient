@@ -16,6 +16,7 @@ let pageVM = function() {
     self.fileTypeOutput = ko.observable("");
     self.quotes = ko.observableArray([]);
     self.selectedQuote = ko.observable();
+    self.newQuote = ko.observable();
     self.quotesDropdown = {
         searchValue: ko.observable()
     }
@@ -56,7 +57,7 @@ let pageVM = function() {
         }).then(({ data }) => {
             self.text(data.text);
             self.confidence(data.confidence);
-            console.log(data);
+            self.newQuote(new QuoteVM());
             spinnerContainer.style.display = "none";
             $('[data-toggle="tooltip"]').tooltip();
         });
@@ -144,10 +145,8 @@ class QuoteVM {
             this.sourcePublicationYear = data.attributes.source_publication_year;
             this.createDate = dayjs(data.attributes.created_at).format('dddd, DD/MM/YYYY h:mm A');
             this.isFiltered = ko.observable(true)
-        } else if (!data) {
-            this.name = vm.quoteName()
+        } else if (!data && vm.text()) {
             this.text = vm.text()
-            this.sourceTitle = vm.quoteSourceTitle()
         }
     }
 
@@ -172,7 +171,7 @@ class QuoteVM {
                 return response.json();
             }).then((json) => {
                 displaySuccess("Quote updated successfully!")
-                getQuotes();
+                refreshQuotes()
             }).catch(function (error) {
                 displayError(error)
             });
@@ -192,7 +191,7 @@ class QuoteVM {
             .then((response) => {
                 if (response.status == 204) {
                     displaySuccess("Quote deleted!");
-                    getQuotes();
+                    refreshQuotes();
                 }
             }).catch(function (error) {
                 displayError(error)
@@ -246,8 +245,8 @@ fileInput.addEventListener("change", function(event) {
     }
 });
 
-var baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
-// var baseUrl = "http://localhost:3000/api/v1"
+// var baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
+var baseUrl = "http://localhost:3000/api/v1"
 
 let getQuotes = function() {
     fetch(baseUrl + "/quotes", {
@@ -258,7 +257,7 @@ let getQuotes = function() {
         .then(response => response.json())
         .then(async function(json) {
             if (json.data) {
-                var queriedQuotes = await []
+                var queriedQuotes = []
                 await json.data.forEach(element => {
                     let loadedQuote = new QuoteVM(element);
                     queriedQuotes.push(loadedQuote);
@@ -269,6 +268,7 @@ let getQuotes = function() {
         })
         .catch(function (error) {
             displayError(error)
+            console.log(error)
             // Cookies.remove('auth_token')
             // window.location = "/login.html"
         });
@@ -313,6 +313,11 @@ let checkToken = function () {
     }
 }
 
+let refreshQuotes = function () {
+    self.quotes() = []
+    getQuotes()
+}
+
 let loadDependencies = async function () {
     await bind();
     getQuotes();
@@ -325,7 +330,7 @@ let bind = function() {
 
 let init = async function () {
     await checkToken();
-    await loadDependencies();
+    loadDependencies();
 }
 
 init();
