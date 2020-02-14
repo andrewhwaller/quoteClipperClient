@@ -76,7 +76,7 @@ let pageVM = function() {
     };
 
     self.grabText = function() {
-        let textarea = document.getElementById("editor");
+        let textarea = document.getElementById("textEditor");
         textarea.select();
         document.execCommand("copy");
         document.getSelection().removeAllRanges();
