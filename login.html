@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-ekOryaXPbeCpWQNxMwSWVvQ0+1VrStoPJq54shlYhR8HzQgig1v5fas6YgOqLoKz" crossorigin="anonymous">
     </head>
 	<body>
-    	<div class="container-fluid login-height-wrapper bg-gradient d-flex">
+    	<div class="container-fluid login-height-wrapper bg-gradient">
             <div class="modal fade" id="createAccountModal" tabindex="-1" role="dialog" aria-labelledby="createAccountModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="spinner" id="spinner"></div>
-            <div class="alert alert-danger d-none fade mt-3 mx-auto" id="errorAlert" role="alert">
+            <div class="alert alert-danger d-none fade mt-3 mx-auto" id="errorAlert" style="position:fixed;top:5px;left:2%;width:96%;" role="alert">
                 <div class="d-flex flex-row">
                     <i class=" h3 fad fa-exclamation-square mr-3 my-auto"></i>
                     <div id="errorMessage"></div>
@@ -69,13 +69,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="alert alert-danger d-none fade mt-3 mx-auto" id="errorAlert" role="alert">
-                    <div class="d-flex flex-row">
-                        <i class=" h3 fad fa-exclamation-square mr-3 my-auto mt-3"></i>
-                        <div id="errorMessage" class="my-auto"></div>
-                    </div>
-                </div>
-            <div class="alert alert-success d-none fade mt-3 mx-auto" id="successAlert" role="alert">
+            <div class="alert alert-success d-none fade mt-3 mx-auto" id="successAlert" style="position:fixed;top:5px;left:2%;width:96%;" role="alert">
                 <div class="d-flex flex-row">
                     <i class="h3 fad fa-thumbs-up mr-3 my-auto"></i>
                     <div id="successMessage"></div>
