@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap&subset=latin-ext"
         rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-ekOryaXPbeCpWQNxMwSWVvQ0+1VrStoPJq54shlYhR8HzQgig1v5fas6YgOqLoKz" crossorigin="anonymous">
-    <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
 </head>
 
 <body>
@@ -154,32 +153,32 @@
                                 <div class="form-group">
                                     <label for="quoteName">Quote name</label>
                                     <small id="nameHelp" class="form-text text-muted">Give your quote a recognizable name that briefly describes its content.</small>
-                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteName" id="quoteName" aria-describedby="emailHelp" placeholder='e.g., "Yogi Berra on existential location"'>
+                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteName" id="newQuoteName" aria-describedby="emailHelp" placeholder="e.g., Yogi Berra on existential location">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourceTitle">Source title</label>
                                     <small id="titleHelp" class="form-text text-muted">What is the title of the quote's source?</small>
-                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteSourceTitle" id="quoteSourceTitle" aria-describedby="titleHelp" placeholder='e.g., "The Book of Yogi"'>
+                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteSourceTitle" id="newQuoteSourceTitle" aria-describedby="titleHelp" placeholder="e.g., The Book of Yogi">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourceAuthor">Author</label>
                                     <small id="authorHelp" class="form-text text-muted">Who is the author of your quote?</small>
-                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteSourceAuthor" id="quoteSourceAuthor" aria-describedby="authorHelp" placeholder='e.g., "Yogi Berra"'>
+                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteSourceAuthor" id="newQuoteSourceAuthor" aria-describedby="authorHelp" placeholder="e.g., Yogi Berra">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourcePageNumber">Page number</label>
                                     <small id="pageNumberHelp" class="form-text text-muted">What's the page number where your quote is located?</small>
-                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteSourcePageNumber" id="quoteSourcePageNumber" aria-describedby="pageNumberHelp" placeholder='e.g., "97"'>
+                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteSourcePageNumber" id="nwqQuoteSourcePageNumber" aria-describedby="pageNumberHelp" placeholder="e.g., 97">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourcePublisher">Publisher</label>
                                     <small id="publisherHelp" class="form-text text-muted">Who published your quote's source?</small>
-                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteSourcePublisher" id="quoteSourcePublisher" aria-describedby="authorHelp" placeholder='e.g., "Baker Baseball Books, Inc."'>
+                                    <input type="text" class="form-control" data-bind="textInput: $root.quoteSourcePublisher" id="newQuoteSourcePublisher" aria-describedby="authorHelp" placeholder="e.g., Baker Baseball Books, Inc.">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourceYearPublished">Year published</label>
                                     <small id="yearPublishedHelp" class="form-text text-muted">When was this source published?</small>
-                                    <input type="year" class="form-control" data-bind="textInput: $root.quoteSourceYearPublished" id="quoteSourceYearPublished" aria-describedby="authorHelp" placeholder='e.g., "Baker Baseball Books, Inc."'>
+                                    <input type="year" class="form-control" data-bind="textInput: $root.quoteSourceYearPublished" id="newQuoteSourceYearPublished" aria-describedby="authorHelp" placeholder="e.g., 1995">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -220,27 +219,27 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="quoteName">Quote name</label>
-                                    <input type="text" class="form-control" data-bind="textInput: name" id="quoteName" aria-describedby="emailHelp" placeholder='e.g., "Yogi Berra on existential location"'>
+                                    <input type="text" class="form-control" data-bind="textInput: name" id="quoteName" aria-describedby="emailHelp" placeholder="e.g., Yogi Berra on existential location">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourceTitle">Source title</label>
-                                    <input type="text" class="form-control" data-bind="textInput: sourceTitle" id="quoteSourceTitle" aria-describedby="titleHelp" placeholder='e.g., "The Book of Yogi"'>
+                                    <input type="text" class="form-control" data-bind="textInput: sourceTitle" id="quoteSourceTitle" aria-describedby="titleHelp" placeholder="e.g., The Book of Yogi">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourceAuthor">Author</label>
-                                    <input type="text" class="form-control" data-bind="textInput: sourceAuthor" id="quoteSourceAuthor" aria-describedby="authorHelp" placeholder='e.g., "Yogi Berra"'>
+                                    <input type="text" class="form-control" data-bind="textInput: sourceAuthor" id="quoteSourceAuthor" aria-describedby="authorHelp" placeholder="e.g., Yogi Berra">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourcePageNumber">Page number</label>
-                                    <input type="text" class="form-control" data-bind="textInput: sourcePageNumber" id="quoteSourcePageNumber" aria-describedby="pageNumberHelp" placeholder='e.g., "97"'>
+                                    <input type="text" class="form-control" data-bind="textInput: sourcePageNumber" id="quoteSourcePageNumber" aria-describedby="pageNumberHelp" placeholder="e.g., 97">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourcePublisher">Publisher</label>
-                                    <input type="text" class="form-control" data-bind="textInput: sourcePublisher" id="quoteSourcePublisher" aria-describedby="authorHelp" placeholder='e.g., "Baker Baseball Books, Inc."'>
+                                    <input type="text" class="form-control" data-bind="textInput: sourcePublisher" id="quoteSourcePublisher" aria-describedby="authorHelp" placeholder="e.g., Baker Baseball Books, Inc.">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteSourceYearPublished">Year published</label>
-                                    <input type="year" class="form-control" data-bind="textInput: sourcePublicationYear" id="quoteSourceYearPublished" aria-describedby="authorHelp" placeholder='e.g., "Baker Baseball Books, Inc."'>
+                                    <input type="year" class="form-control" data-bind="textInput: sourcePublicationYear" id="quoteSourceYearPublished" aria-describedby="authorHelp" placeholder="e.g., 1995">
                                 </div>
                                 <div class="form-group">
                                     <label for="quoteText">Text</label>
@@ -270,7 +269,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"
         crossorigin="anonymous"></script>
-	<script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
+	<script src="https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.20/dayjs.min.js" integrity="sha256-ca0AUcGacUBWNoFjEyMEXFfWfdNHNiGC5uTEsMWj1oQ=" crossorigin="anonymous"></script>
     <script type="module" src="js/quoteClipper.js"></script>
