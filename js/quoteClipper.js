@@ -1,6 +1,8 @@
+/* eslint-disable no-global-assign */
 let pageVM = function() {
     self = this;
 
+    // eslint-disable-next-line no-undef
     self.text = ko.observable("");
     self.quoteName = ko.observable("");
     self.quoteSourceTitle = ko.observable("");
@@ -313,7 +315,7 @@ let checkToken = function () {
 }
 
 let refreshQuotes = function () {
-    self.quotes() = []
+    self.quotes = ko.observableArray([]);
     getQuotes()
 }
 
