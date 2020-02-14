@@ -317,6 +317,12 @@ let checkToken = function () {
 }
 
 let refreshQuotes = async function () {
+    self.quoteName("")
+    self.quoteSourceTitle("")
+    self.quoteSourceAuthor("")
+    self.quoteSourcePageNumber("")
+    self.quoteSourcePublisher("")
+    self.quoteSourceYearPublished("")
     await self.quotes([])
     await getQuotes()
     self.quotes.valueHasMutated()
