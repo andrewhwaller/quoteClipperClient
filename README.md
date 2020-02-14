@@ -8,7 +8,9 @@
 
 quoteClipper uses OCR to help you extract text from books, articles, or other print media and store them in a digital format for use in digital media.
 
-## Getting Started with FOCUSHIFT
+The repo for quoteClipper's API can be found here: https://github.com/andrewhwaller/quoteClipperAPI
+
+## Getting Started with quoteClipper
 
 First, head over to quoteclipper.com. If this is your first time using quoteCLipper, create an account using your email address.
 
