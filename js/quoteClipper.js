@@ -264,7 +264,6 @@ let getQuotes = function() {
                 });
                 vm.quotes(queriedQuotes)
             }
-
         })
         .catch(function (error) {
             displayError(error)
