@@ -119,6 +119,7 @@ let pageVM = function() {
             .then((response) => {
                 if (response.status == 201) {
                     displaySuccess("You clipped a new quote!")
+                    refreshQuotes()
                 }
             }).catch(function (error) {
                 displayError(error)
