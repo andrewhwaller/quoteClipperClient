@@ -197,6 +197,7 @@ class QuoteVM {
                 }
             }).catch(function (error) {
                 displayError(error)
+                console.log(error)
             });
     }
 
@@ -314,9 +315,10 @@ let checkToken = function () {
     }
 }
 
-let refreshQuotes = function () {
-    self.quotes = ko.observableArray([]);
-    getQuotes()
+let refreshQuotes = async function () {
+    await self.quotes([])
+    await getQuotes()
+    self.quotes.valueHasMutated()
 }
 
 let loadDependencies = async function () {
