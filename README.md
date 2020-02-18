@@ -12,7 +12,7 @@ The repo for quoteClipper's API can be found here: https://github.com/andrewhwal
 
 ## Getting Started with quoteClipper
 
-First, head over to quoteclipper.com. If this is your first time using quoteCLipper, create an account using your email address.
+First, head over to quoteclipper.com. If this is your first time using quoteClipper, create an account using your email address.
 
 Once you're logged in you'll be able to upload an image of the appropriate type and quoteClipper will use the Tesseract OCR engine to extract any text from that image. Once the image has been processed, you can use the "Grab text" button to copy the extracted text straight to your clipboard for use in other sites and applications. You can all click the "Save" button to fill out additional information about your quote and save it to quoteClipper's database for later use. Any quotes you've saved will appear in the "Quotes" dropdown menu at the top of the page. This menu will allow you to search for, view, and delete any quotes that you've clipped.
 
