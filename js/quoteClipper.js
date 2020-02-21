@@ -249,8 +249,8 @@ fileInput.addEventListener("change", function(event) {
     }
 });
 
-var baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
-// var baseUrl = "http://localhost:3000/api/v1"
+// var baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1";
+var baseUrl = "http://localhost:3000/api/v1"
 
 let getQuotes = function() {
     fetch(baseUrl + "/quotes", {

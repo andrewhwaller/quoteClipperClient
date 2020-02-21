@@ -3,8 +3,8 @@ const loginPanel = document.getElementById("loginPanel")
 const createAccountForm = document.getElementById("createAccountForm")
 const spinner = document.getElementById("spinner")
 
-var baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1"
-// var baseUrl = "http://localhost:3000/api/v1"
+// var baseUrl = "https://afternoon-fjord-40383.herokuapp.com/api/v1"
+var baseUrl = "http://localhost:3000/api/v1"
 
 loginForm.addEventListener('submit', function (e) {
     if (loginForm.checkValidity()) {
@@ -41,8 +41,8 @@ createAccountForm.addEventListener('submit', function (e) {
         let status;
         let headers = new Headers();
         headers.set('Content-type', 'application/json');
-        fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
-        // fetch("http://localhost:3000/api/v1/users", {
+        // fetch("https://afternoon-fjord-40383.herokuapp.com/api/v1/users/login", {
+        fetch("http://localhost:3000/api/v1/users/login", {
             method: 'POST',
             body: JSON.stringify({ user: { email: createAccountForm.newEmail.value, password: createAccountForm.newPassword.value, password_confirmation: createAccountForm.confirmPassword.value } }),
             headers: headers
