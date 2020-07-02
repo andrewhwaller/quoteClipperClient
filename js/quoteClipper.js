@@ -2,7 +2,6 @@
 let pageVM = function() {
     self = this;
 
-    // eslint-disable-next-line no-undef
     self.text = ko.observable("");
     self.quoteName = ko.observable("");
     self.quoteSourceTitle = ko.observable("");
@@ -172,10 +171,12 @@ class QuoteVM {
             .then((response) => {
                 status = response.status;
                 return response.json();
-            }).then((json) => {
+            })
+            .then((json) => {
                 displaySuccess("Quote updated successfully!")
                 refreshQuotes()
-            }).catch(function (error) {
+            })
+            .catch(function (error) {
                 displayError(error)
             });
     }
